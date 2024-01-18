@@ -1,0 +1,460 @@
+\documentclass{amsart}
+\usepackage[parfill]{parskip} 
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[pdftex]{hyperref}
+\usepackage{euscript}
+\usepackage{tikz-cd}
+\usepackage{appendix}
+\usepackage{comment}
+
+
+\hypersetup{
+  colorlinks,
+  citecolor=blue,
+  filecolor=black,
+  linkcolor=blue,
+  urlcolor=black
+}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{claim}{Claim}
+
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+
+
+
+\def\phi{\varphi}
+\def\epsilon{\varepsilon}
+\def\E{\exists}
+\def\A{\forall}
+\DeclareMathOperator{\Clo}{Clo}
+\DeclareMathOperator{\Con}{Con}
+\DeclareMathOperator{\CSP}{CSP}
+\DeclareMathOperator{\Inv}{Inv}
+\DeclareMathOperator{\Pol}{Pol}
+\DeclareMathOperator{\NP}{NP}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\typ}{typ}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\Alg}{Alg}
+\DeclareMathOperator{\Eq}{Eq}
+\DeclareMathOperator{\Id}{E}
+\DeclareMathOperator{\U}{U}
+\DeclareMathOperator{\M}{M}
+\DeclareMathOperator{\fin}{fin}
+
+\begin{document}
+\title{Minimal Algebras}
+\author{Arturo}
+
+
+\begin{abstract}
+   In this note 
+\end{abstract}
+
+\maketitle 
+
+\section{Preliminaries} 
+\begin{definition}
+    Let $F$ be a set of function symbols and $\mathbf{A}$ be an algebra over $F$. 
+    We denote by $\Pol(\mathbf{A})$ the smallest set containing 
+    \begin{enumerate}
+        \item $\{f^\mathbf{A}: f \in F\}$; 
+        \item $\{\pi^n_i: A^n \to A, 1 \le i \le n, n \in \omega\}$; 
+        \item the constant $0$-ary operations
+    \end{enumerate}
+and closed under composition. 
+The elements of $\Pol(\mathbf{A})$ are called \textbf{polynomial} operations. 
+We say that two algebras $\mathbf{A}$ and $\mathbf{B}$ on the same carrier are \textbf{polynomial equivalent} if $\Pol(\mathbf{A})=\Pol(\mathbf{B})$. 
+\end{definition}
+
+\section{Minimal Algebras}
+
+
+\begin{example}
+    If $\phi \in \Clo_{m+n}(\mathbf{A})$ and $(a_1, \ldots, a_m) \in A^m$, then 
+    \begin{equation*}
+        \psi: A^n \to A \quad (b_1, \ldots, b_n) \mapsto \phi(a_1, \ldots, a_m,b_1, \ldots, b_n)
+    \end{equation*}
+is a polynomial operation.  
+\end{example}
+
+
+\section{Tame Congruences}
+
+\begin{definition}
+    Let $\mathbf{A}$ be a finite algebra and $\alpha, \beta \in \Con(\mathbf{A})$ with $\alpha < \beta$. 
+    We denote by
+    \begin{enumerate}
+        \item $\Id(\mathbf{A})$ the set of $ \epsilon \in \Pol_1(\mathbf{A})$ such that $\epsilon^2 = \epsilon$; 
+        \item $\U_{\mathbf{A}}(\alpha, \beta)$ the set $\{\phi[A] : \phi \in \Pol_1(\mathbf{A}), \phi(\beta) \nsubseteq \alpha\}$; 
+        \item $\M_{\mathbf{A}}(\alpha, \beta)$ the set of minimal elements of $\U_{\mathbf{A}}(\alpha, \beta)$. 
+    \end{enumerate}
+\end{definition}
+
+\begin{remark}
+    Let $\mathbf{A}$ be an algebra. 
+    An equivalence relation $\alpha$ is a congruence of $\mathbf{A}$ iff $\phi(\alpha) \subseteq \alpha$ for every $\phi \in \Pol_1(\mathbf{A})$. 
+\end{remark}
+
+Let $\mathbf{A}$ be a finite algebra. 
+In this section we adopt the following convention, concerning the restriction $(-|U)$ operation, for $U \subseteq A$: 
+\begin{itemize}
+    \item if $\theta \in \Con(\mathbf{A})$, $\theta | U := \theta \cap U^2$; 
+    \item if $\phi: A^n \to A$, $\phi| U$ is the function $U^n \to A$, $(u_1, \ldots, u_n) \mapsto \phi(u_1, \ldots, u_n)$; 
+    \item $\Pol(\mathbf{A})|U:=\{\psi|U : \psi \in \Pol(\mathbf{A}) \text{ and } \psi[U^n] \subseteq U \}$; 
+    \item $\mathbf{A}||U := (U, \Pol(\mathbf{A})|U)$. 
+\end{itemize}
+
+\begin{lemma}
+    Let $\mathbf{A}$ be a finite algebra. 
+    Let $\epsilon \in \Id(\mathbf{A})$, $U=\epsilon[A]$. 
+    Then $(-|U): \Con(\mathbf{A}) \to \Con(\mathbf{A}||U)$ is a surjective $(\land, \lor)$-homomorphism.
+\end{lemma}
+
+\begin{lemma}
+    \label{lemma_ex}
+    Let $\epsilon \in \Id(\mathbf{A})$, $U:=\epsilon[A]$, and $\varnothing \neq N \subseteq U$.  
+    Then $\mathbf{A}||N = (\mathbf{A}||U)||N$. 
+    \begin{proof}
+        That $(\Pol(\mathbf{A})|U)|N \subseteq \Pol(\mathbf{A})|N$ is obvious. 
+        Conversely, let $\psi=\phi|N$ for some $\phi \in \Pol(\mathbf{A})$ with $\phi[N^k] \subseteq N$. 
+        Clearly, $\epsilon \phi [U^k] \subseteq U$. 
+        If $(a_1, \ldots, a_k) \in N$, $\phi(a_1, \ldots, a_k) \in N \subseteq U$, hence $\phi(a_1, \ldots, a_k) = \epsilon(a)$ for some $a \in A$. 
+        Hence $\epsilon \phi(a_1, \ldots, a_k) = \epsilon^2(a)=\epsilon(a) \in N$ so that $(\epsilon \phi |U )|N = \phi|N$. 
+        We have shown that $\psi$ is an operation of $(\mathbf{A}||U)||N$. 
+    \end{proof}
+\end{lemma}
+
+\begin{definition}
+    Let $\mathbf{A}$ be a finite algebra and $\alpha, \beta \in \Con(\mathbf{A})$ with $\alpha < \beta$. 
+    The pair $(\alpha, \beta)$ is a pair of \textbf{tame} congruences if there is $V \in \M_{\mathbf{A}}(\alpha, \beta)$, $\epsilon \in \Id(\mathbf{A})$ such that $\epsilon[A]=V$ and 
+    $(-|V): [\alpha, \beta] \to [\alpha|V, \beta|V]$ is $0,1$-separating\footnote{Let $\mathbf{L}$, $\mathbf{N}$ be two lattices. 
+    A $(\land, \lor)$-homomorphism $\alpha: \mathbf{L} \to \mathbf{N}$ is $0,1$-\textbf{separating} if $\alpha^{-1}[\{\alpha(i)\}]=i$ for $i=0,1$.}. 
+\end{definition}
+
+\begin{lemma}
+    \label{lemma_pol}
+    Let $(\alpha, \beta)$ be a tame pair of congruences of a finite algebra $\mathbf{A}$. 
+    For every $U \in \M_{\mathbf{A}}(\alpha, \beta)$, there  is $\epsilon \in \Id(\mathbf{A})$ such that $\epsilon[A]=U$. 
+    \begin{proof}
+        Since $(\alpha, \beta)$ is tame, there is $V_0 \in \M_\mathbf{A}(\alpha,\beta)$ and $\epsilon_0 \in \Id(\mathbf{A})$ such that $V_0 = \epsilon_0[A]$ and $(-|V_0)$ is $0,1$-separating. 
+        \begin{claim}
+            \label{lemma_pol_claim1}
+            If $(x,y) \in \beta - \alpha$, there is $\phi \in \Pol_1(\mathbf{A})$ with $\phi[A]=V_0$ and such that $(\phi(x), \phi(y)) \in \beta|V_0 - \alpha|V_0$. 
+            \begin{proof}
+                Let $\theta:=\{(x,y) \in \beta : (\epsilon_0 \phi (x), \epsilon_0 \phi(y)) \in \alpha \text{ for all } \phi \in \Pol_1(\mathbf{A})\}$. 
+                Now, $\theta \in [\alpha, \beta]$ and $\alpha |V_0 = \theta|V_0$; 
+                that $\alpha |V_0 \subseteq \theta|V_0$ is obvious, for the converse: 
+                \begin{align*}
+                    \theta|V_0 & = \{ (a,b) \in \beta \cap V^2_0: (\epsilon_0 \phi (a), \epsilon_0 \phi(b)) \in \alpha \quad \A \phi \in \Pol_1(\mathbf{A})\}  \\
+                    & = \{(\epsilon_0(x), \epsilon_0(y)) \in \beta : (\epsilon_0 \phi \epsilon_0 (x), \epsilon_0 \phi \epsilon_0 (y)) \in \alpha \quad \A\phi \in \Pol_1(\mathbf{A})\}\\ 
+                    & \subseteq \{(\epsilon_0(x), \epsilon_0(y)) \in \beta : (\epsilon_0 (x), \epsilon_0 (y)) \in \alpha \}\\ 
+                    & = \{(a,b) \in \beta : (a, b ) \in \alpha \cap V^2_0\}\\ 
+                    & = \alpha | V_0 
+                \end{align*} 
+            This implies that $\theta = \alpha $, since $(-|V_0)$ is $0$-separating. 
+            Thus $(x,y) \in \beta - \alpha$ implies $(x,y) \in \beta - \theta$. 
+            By definition of $\theta$, there is $\psi \in \Pol_1(\mathbf{A})$ such that $(\epsilon_0 \psi (x), \epsilon_0\psi (y)) \notin \alpha$. 
+            Thus $\phi:=\epsilon_0 \psi$ satisfies the conditions $\phi[A] \subseteq V_0$ and $(\phi(x), \phi(y)) \in \beta |V_0 - \alpha|V_0$. 
+            Hence $\phi[A] = V_0$ by $(\alpha, \beta)$-minimality. 
+            \end{proof}
+        \end{claim}
+        \begin{claim}
+            \label{lemma_pol_claim2}
+            The relation $\beta$ is the transitive closure of 
+            \begin{equation*}
+                \alpha \cup \{(\psi(x), \psi(y)) : (x,y) \in \beta|V_0, \psi \in \Pol_1(\mathbf{A})\} \text{.}
+            \end{equation*}
+            \begin{proof}
+                The transitive closure of $\alpha \cup \{(\psi(x), \psi(y)) : (x,y) \in \beta|V_0, \psi \in \Pol_1(\mathbf{A})\}$ is $\alpha \lor \theta(\beta|V_0)$. 
+                But $\alpha \lor \theta(\beta|V_0) \in [\alpha, \beta]$, and therefore, since $(-|V_0)$ is $1$-seprating, $\beta=\alpha \lor \theta(\beta|V_0)$. 
+            \end{proof}
+        \end{claim}
+        Assume that $U \in \M_{\mathbf{A}}(\alpha, \beta)$. 
+        Then, by definition, there is $\mu \in \Pol_1(\mathbf{A})$ such that $\mu[A] =U$ and $\mu(\beta) \nsubseteq \alpha$. 
+        This implies that the equivalence relation 
+        \begin{equation*}
+            \mu^{-1}(\alpha)=\{(a,b): (\mu(a), \mu(b)) \in \alpha\} 
+        \end{equation*}
+        is such that $\beta \nsubseteq \mu^{-1}(\alpha)$. 
+        Then by Claim \ref{lemma_pol_claim2} there are $a,b \in V_0$ and $\psi \in \Pol_1(\mathbf{A})$ such that $(a,b) \in \beta$ and $(\mu \psi(a), \mu \psi(b)) \notin \alpha$. 
+        The function $\mu_1:=\mu \psi \epsilon_0$ satisfies $\mu_1[A] \subseteq U$ and $\mu_1(\beta) \nsubseteq \alpha$: 
+        there are $x,y \in A$ such that $(a,b)=(\epsilon_0(x), \epsilon_0(y)) \in \beta $ but $(\mu_1(a), \mu_1(b))=(\mu \psi \epsilon_0(x), \mu \psi \epsilon_0(y)) \notin \alpha$. 
+        Thus $\mu_1[A] = U$ by $(\alpha, \beta)$-minimality. 
+        Observe that $\mu_1[V_0]=\mu_1 \epsilon_0 [A] = \mu \psi \epsilon^2_0[A] = \mu_1[A]$, so that $\mu_1[V_0] = U$. 
+        Apply Claim \ref{lemma_pol_claim1} to the pair $(\mu_1(a), \mu_1(b))$ to get $\nu \in \Pol_1(\mathbf{A})$ such that $\nu[A]=V_0$ and $(\nu \mu_1(a), \nu \mu_1(b)) \notin \alpha$. 
+        Now, since $\mu_1 \nu [A] = \mu_1[V_0] = U$, 
+        $\mu_1 \nu | U $ is bijective; since $U$ is finite, there is $k >1$ such that $(\mu_1 \nu |U )^k = (\mu_1 \nu)^k |U =1_U$. 
+        Let $\epsilon:=(\mu_1 \nu)^k$.
+        We have: $\epsilon[A] = (\mu_1 \nu)^k[A]=(\mu_1 \nu)^{k-1}[U]=U$ and, consequently, for all $a \in A$, $\epsilon^2(a)=\epsilon(a)$ since $\epsilon(a) \in U$. 
+        Therefore $\epsilon \in \Id(\mathbf{A})$. 
+    \end{proof}
+\end{lemma}
+
+\begin{definition}
+    Let $(\alpha, \beta)$ be tame in a finite algebra $\mathbf{A}$. 
+    An $(\alpha, \beta)$-\textbf{trace} of $\mathbf{A}$ is $N \subseteq A$ such that for some $U \in \M_{\mathbf{A}}(\alpha, \beta)$ and $x \in U$, $N\subseteq U$ and $N=x/(\beta|U) \neq x/(\alpha|U)$. 
+\end{definition}
+
+
+\section{Classification of Finite Minimal Algebras}
+
+\begin{definition}
+    A nontrivial finite algebra $\mathbf{A}$ is \textbf{minimal} iff every noncostant element of $\Pol_1(\mathbf{A})$ is bijective.
+\end{definition}
+
+The goal is to classify, up to polynomial equivalence, all the finite minimal algebras. 
+
+\begin{example}
+    The following are examples of minimal algebras. 
+    \begin{enumerate}
+        \item any algebra with carrier $2$; 
+        \item a nontrivial finite vector space $\mathbf{A}$ over a finite field $\mathbf{k}$: every $\pi \in \Pol_1(\mathbf{A})$ is of the form $\pi(v)=av+b$ for some $a \in k$, $b \in A$; 
+        \item a group of permutations acting on a finite set\footnote{Let $\mathbf{G}$ be a group acting on a set $A$.  
+        Each $g \in G$ induces an operation $\phi_g: A \to A$ given by $\phi_g(a)=g \cdot a$. 
+        Let $\Phi_\mathbf{G}:=\{\phi_g: g \in G\}$. 
+        A $\mathbf{G}$-set can be seen as an algebra $(A, \Phi_\mathbf{G})$.}.
+    \end{enumerate}
+\end{example}
+
+We shall prove that, up to polynomial equivalence, there are no other finite minimal algebras. 
+
+\begin{lemma}
+    Let $\mathbf{A}$ be a minimal algebra.
+    If every element of $\Pol(\mathbf{A})$ is essentially unary, then $\mathbf{A}$ is polynomial equivalent to $(A, \Phi_{\mathbf{G}})$ where $\mathbf{G}$ is a finite group acting on $A$. 
+    \begin{proof}
+        Since $\mathbf{A}$ is minimal, $\Pol_1(\mathbf{A}) \cap \Sym(A)$ is a subgroup of $\Sym(A)$. 
+        Let $\mathbf{G}:=\Pol_1(\mathbf{A}) \cap \Sym(A)$. 
+        If $\psi \in \Pol(\mathbf{A})$, either $\psi$ is constant or $\psi$ is essentially unary, hence $(A, \Phi_{\mathbf{G}})$ is polynomially equivalent to $\mathbf{A}$. 
+    \end{proof}
+\end{lemma}
+
+\begin{theorem}
+    [\cite{classification-minimal}]
+    Let $\mathbf{A}$ be a minimal algebra with $|A| > 2$.  
+    If $\Pol(\mathbf{A})$ contains an operation which is not essentially unary, then $\mathbf{A}$ is polynomially equivalent to a $\mathbf{k}$-vector space for a finite field $\mathbf{k}$. 
+\end{theorem}
+
+\begin{theorem}
+    \label{classification-two}
+    Every algebra $\mathbf{A}$ with carrier $2$ is polynomially equivalent to one of the following: 
+    \begin{enumerate}
+        \item $\mathbf{E}_0= (2, \varnothing)$;
+        \item $\mathbf{E}_1 = (2, \lnot)$; 
+        \item $\mathbf{E}_3 = (2, \land, \lor, \lnot)$; 
+        \item $\mathbf{E}_4 = (2, \land, \lor)$; 
+        \item $\mathbf{E}_5 = (2, \lor)$; 
+        \item $\mathbf{E}_6 = (2, \land)$.
+    \end{enumerate}
+    Each of them is not polynomially equivalent to the other\footnote{A classical theorem by Post states that the set of clones of operations on $2$ is countable infinite. 
+    By Theorem \ref{classification-two} among these there are exactly seven distinct clones containing the constant operations.
+    However it has been proven that the set of clones on $3$ containing the constant operations is uncountable.}.
+\end{theorem}
+
+\begin{remark}
+    Up to isomorphism, $\mathbf{E}_5 (\simeq \mathbf{E}_6)$ is the only semilattice with two elements, while $\mathbf{E}_3$ and $\mathbf{E}_4$ are the only Boolean algebra and lattice, respectively, with two elements. 
+\end{remark}
+
+\begin{definition}
+    Let $\mathbf{A}$ be a minimal algebra. 
+    We say that $\mathbf{A}$ is of 
+    \begin{enumerate}
+        \item \textbf{type 1} (or \textbf{unary}) if $\mathbf{A}$ is polynomially equivalent to $(A, \Phi_\mathbf{G})$ for some $\mathbf{G} \le \Sym(A)$; 
+        \item \textbf{type 2} (or \textbf{affine}) if $\mathbf{A}$ is polynomially equivalent to a vector space over a finite field $\mathbf{k}$; 
+        \item \textbf{type 3} (or \textbf{Boolean}) if $\mathbf{A}$ is polynomially equivalent to $\mathbf{E}_3$;
+        \item \textbf{type 4} (or \textbf{lattice}) if $\mathbf{A}$ is polynomially equivalent to $\mathbf{E}_4$;
+        \item \textbf{type 5} (or \textbf{semilattice}) if $\mathbf{A}$ is polynomially equivalent to $\mathbf{E}_5$. 
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}
+    Let $\mathbf{A}$ be a finite algebra and let $\delta < \theta \in \Con(\mathbf{A})$. 
+    We say that $\mathbf{A}$ is $(\delta, \theta)$-\textbf{minimal} if for all $\epsilon \in \Pol_1(\mathbf{A})$ either $\epsilon$ is bijective or $\epsilon(\theta) \subseteq \delta$. 
+\end{definition}
+
+\begin{remark}
+    Observe that $\mathbf{A}$ is minimal iff $\mathbf{A}$ is $(\Delta, \nabla)$-minimal. 
+\end{remark}
+
+\begin{definition}
+    Let $\mathbf{A}$ be a finite algebra minimal with respect to $(\delta, \theta)$. 
+    We say that $\mathbf{A}$ has \textbf{type} $\mathbf{i}$ relative to $(\delta, \theta)$ if for every $(\delta, \theta)$-trace $N$, 
+    $(\mathbf{A}||N)/(\delta|N)$ is a minimal algebra of type $\mathbf{i}$. 
+\end{definition}
+
+\begin{definition}
+    Let $(\alpha, \beta)$ be tame in a finite algebra $\mathbf{A}$. 
+    Let $N$ be a $(\alpha,\beta)$-trace. 
+    We define the \textbf{type} of $(\alpha, \beta)$, written $\typ(\alpha, \beta)$, to be the type of the minimal algebra $\mathbf{M}=(\mathbf{A}||N)/(\alpha|N)$. 
+\end{definition}
+
+Finally, for a finite algebra $\mathbf{A}$, we define $\typ\{\mathbf{A}\}:=\{\typ(\alpha, \beta): (\alpha, \beta) \text{ is tame}\}$ and for a class $K$ of finite algebras, $\typ\{K\}:=\cup\{\typ\{\mathbf{A}\} : \mathbf{A} \in K\}$. 
+
+
+\section{Omitting Types}
+
+\begin{definition}
+    Let $\mathsf{V}$ be a variety. 
+    An algebra $\mathbf{A} \in \mathsf{V}$ is called
+    \begin{enumerate}
+        \item \textbf{free} if there is an isomorphism $\mathbf{A} \simeq \mathbf{F}_{\mathsf{V}}(\kappa)$ for some cardinal $\kappa$; 
+        \item \textbf{finitely generated} if there is a surjective homomorphism $\mathbf{F}_{\mathsf{V}}(n) \to \mathbf{A}$ for some $n \in \omega$. 
+    \end{enumerate} 
+\end{definition}
+
+\begin{definition}
+    A variety $\mathsf{V}$ is called 
+    \begin{enumerate}
+    \item \textbf{locally finite} if all its finitely generated algebras are finite; 
+    \item \textbf{finitely presented} if $\mathsf{V}$ has a finite set of function symbols and $\mathsf{V}= \Alg(\Sigma)$ for a finite set of equations $\Sigma$; 
+    \item \textbf{finitely generated} if $\mathsf{V}=V(\mathbf{A}_1, \ldots, \mathbf{A}_n)$ for $\mathbf{A}_1, \ldots, \mathbf{A}_n$ finite similar algebras. 
+    \end{enumerate}
+\end{definition}
+
+\begin{remark}
+    Observe that $V(\mathbf{A}_1, \ldots, \mathbf{A}_n)=V(\mathbf{A}_1 \times \cdots \times \mathbf{A}_n)$.  
+\end{remark}
+
+\begin{lemma}
+    \label{loc_fin}
+    Let $\mathsf{V}$ be a variety. 
+    If $\mathsf{V}$ is finitely generated then it is locally finite. 
+    \begin{proof}
+        %Let $\mathsf{V}=HSP(\mathbf{A}_1, \ldots, \mathbf{A}_n)$ with $\mathbf{A}_i$ finite. 
+        %Let $\mathbf{A} \in \mathsf{V}$ be finitely generated. 
+        %Then there is a surjective homomorphism $\alpha: \mathbf{A}' \to \mathbf{A}$ for some 
+        %\begin{equation*}
+        %    \mathbf{A}' \le \mathbf{A}^{\kappa_1}_1 \times \cdots \times \mathbf{A}^{\kappa_n}_n
+        %\end{equation*} 
+        %We prove that $\mathbf{A}'$ is finite. 
+        %Without loss of generality we can assume that $\mathbf{A}'$ is finitely generated: if not we can replace $\mathbf{A}'$ with $\mathbf{A}' /\ker(\alpha)$. 
+        %Since $\mathbf{A}'$ is finitely generated, 
+        %there is a finite number of homomorphisms $\mathbf{A}' \to \mathbf{A}_i$ for every $i$. 
+        %Composing the embedding 
+        %\begin{equation*}
+        %    \mathbf{A}' \hookrightarrow  \mathbf{A}^{\kappa_1}_1 \times \cdots \times \mathbf{A}^{\kappa_n}_n
+        %\end{equation*} with the projections, 
+        %we see that $\mathbf{A}'$ embeds into $\mathbf{A}^{k_1}_1 \times \cdots \times \mathbf{A}^{k_n}_n$ for some \emph{finite} $k_1, \ldots, k_n$, hence it is finite. 
+    
+        By the previuos remark, we can assume that $\mathsf{V}=V(\mathbf{A})$ for some $\mathbf{A}$ finite. 
+        Let $n < \omega$. 
+        We prove that $\mathbf{F}_{\mathsf{V}}(n)$ is finite. 
+        Consider the homomorphism
+        \begin{equation*}
+            \mathbf{F}_{\mathsf{V}}(n) \to \mathbf{A}^{A^n}, \quad t(x_1, \ldots, x_n) \mapsto t^\mathbf{A}
+        \end{equation*}
+        This homomorphism is injective: if $t^\mathbf{A} = s^\mathbf{A}$, then $\mathbf{A} \models t \equiv s$, i.e. $t=s$ in $\mathbf{F}_{\mathsf{V}}(n)$. 
+        %between $\mathbf{F}_{\mathsf{V}}(n)$ and the subalgebra of $\mathbf{A}^{A^n}$ with underlying set $\Clo_n(\mathbf{A})$. 
+        Thus $\mathbf{F}_{\mathsf{V}}(n)$ is finite. 
+    \end{proof}
+\end{lemma}
+
+\begin{definition}
+    Let $\mathsf{V}$ and $\mathsf{W}$ be two varieties. 
+    We say that $\mathsf{V}$ is \textbf{interpretable} into $\mathsf{W}$ ($\mathsf{V} \le \mathsf{W}$) if there is a clone homomorphism $\Clo(\mathsf{V}) \to \Clo(\mathsf{W})$. 
+\end{definition}
+
+\begin{remark}
+    Let $\mathsf{W}, \mathsf{V}$ be two varieties. 
+    We unravel what $\mathsf{W} \le \mathsf{V}$ means in a simple case. 
+    Let $F$ be a finite set of function symbols.
+    Let $\mathsf{V}$ be a variety of algebras over $F$, defined by the equations 
+    \begin{equation}
+        \label{remark_clone}
+        s_1 \equiv t_1,\ldots, s_k \equiv t_k \text{.}
+    \end{equation} 
+    Assume that for each $f \in F_n$ there is $t \in \Clo_n(\mathsf{W})$ such that the interpetation of the $t$'s satisfy the equations \eqref{remark_clone}. 
+    Then the assignment $f \mapsto t$ extends to a clone homomorphism $\Clo(\mathsf{V}) \to \Clo(\mathsf{W})$. 
+    Of course, the converse also holds; thus this is equivalent to $\mathsf{W} \le \mathsf{V}$. 
+\end{remark}
+
+\begin{lemma}
+    Let $\mathsf{W}, \mathsf{V}$ be two varieties such that $\mathsf{W} \le \mathsf{V}$. 
+    Assume that $\mathsf{W}$ is 
+    \begin{itemize}
+        \item idempotent; 
+        \item finitely presented; 
+        \item the finite set of equations defining $\mathsf{W}$ contains at most one function symbol per side. 
+    \end{itemize}
+    Let $\mathbf{A} \in \mathsf{V}$, $\epsilon \in \Id(\mathbf{A})$, $U:=\epsilon[A]$, $\beta \in \Con(\mathbf{A})$ and $S:=a/\beta \cap U$ for $a \in U$. 
+    Then $\mathsf{W} \le V(\mathbf{A}||S)$. 
+    \begin{proof}
+        By assumption $\mathsf{W}$ can be described by a finite set of equations of the form 
+        \begin{equation}
+            f_i(x_{i_1}, \ldots, x_{i_h}) \equiv f_j(x_{j_1}, \ldots, x_{j_k})
+        \end{equation}
+        where $f_i$ and $f_j$ are members of a finite set $F$ of function symbols. 
+        Since $\mathsf{W} \le  \mathsf{V}$, there is an assignment $f \mapsto t$ extending to a clone homomorphism. 
+        We need to find a clone homomorphism $\Clo(\mathsf{W}) \to \Clo(\mathbf{A}||S)$. 
+        Consider $f \mapsto \phi:=\epsilon t_i^\mathbf{A} |S$. 
+        Firstly, it is well defined: if $(a_1, \ldots, a_n) \in S$, $(\phi(a_1, \ldots, a_n), \phi(a, \ldots, a)) \in \beta$ but 
+        \begin{equation*}
+            \phi(a, \ldots, a) = \epsilon t^\mathbf{A} (a, \ldots, a) = \epsilon(a) \in U
+        \end{equation*}
+        so that $\phi(a_1, \ldots, a_n) \in S$ and therefore $\phi \in \Pol(\mathbf{A})|S$. 
+        Finally, using that $\mathsf{W} \le  \mathsf{V}$
+        \begin{align*}
+            \phi_i(a_{i_1}, \ldots, a_{i_h}) & = \epsilon t_i^\mathbf{A} (a_{i_1}, \ldots, a_{i_h}) \\
+            & = \epsilon t_j^\mathbf{A} (a_{j_1}, \ldots, a_{j_k})\\
+            & = \phi_j(a_{j_1}, \ldots, a_{j_k}) \text{.} \qedhere\\
+        \end{align*} 
+    \end{proof}
+\end{lemma}
+
+\begin{theorem}
+    \label{omitting_typ1}
+    Let $\mathsf{V}$ be a locally finite variety. 
+    The following are equivalent: 
+    \begin{enumerate}
+        \item $\mathbf{1} \notin \typ\{\mathsf{V}\}$; 
+        \item there is an idempotent variety $\mathsf{W}$ such that $\mathsf{W} \le \mathsf{V}$ and $\mathsf{W} \nleq \mathsf{Set}$. 
+    \end{enumerate}
+\end{theorem}
+
+\begin{corollary}
+    Let $\mathbf{A}$ be a finite idempotent algebra. 
+    There is $\mathbf{B} \in HS(\mathbf{A})$ such that $\Clo(\mathbf{B})=\mathbf{N}$ iff $\mathbf{1} \in \typ\{HS(\mathbf{A})\}$. 
+    \begin{proof}
+        If $\mathbf{1} \in \typ\{HS(\mathbf{A})\}$, then $\mathbf{1} \in \typ\{HSP(\mathbf{A})\}$. 
+        Since $\mathbf{A}$ is finite, then, by Lemma \ref{loc_fin} $HSP(\mathbf{A})$ is locally finite, 
+        and therefore, by Theorem \ref{omitting_typ1}, for every idempotent variety $\mathsf{W}$, either $\mathsf{W} \nleq HSP(\mathbf{A})$ or $\mathsf{W} \le \mathsf{Set}$. 
+        In particular, since $\mathbf{A}$ is idempotent, $HSP(\mathbf{A}) \le \mathsf{Set}$. 
+        This means that there is a clone homomorphism $\Clo(\mathbf{A}) \to \mathbf{N}$. 
+        Equivalently, every term operation of $\mathbf{A}$ is a projection. 
+        Hence, $\Clo(\mathbf{A}) = \mathbf{N}$. 
+
+        Conversely, let $\mathbf{B} \in HS(\mathbf{A})$ such that $\Clo(\mathbf{B})=\mathbf{N}$; 
+        this means that $\mathbf{B}$ is term equivalent to a set. 
+        Hence $\mathbf{B}$ is polynomial equivalent to a set on which the trivial group acts. 
+        Then $\mathbf{1} \in \typ\{\mathbf{B}\}$, and therefore $\mathbf{1} \in \typ\{HS(\mathbf{A})\}$. 
+    \end{proof}
+\end{corollary}
+
+\begin{theorem}
+    [\cite{wnu}]
+    Let $\mathbf{A}$ be a finite idempotent algebra. 
+    Then $\Clo(\mathbf{A})$ contains a weak near-unanimity operation iff $\mathbf{1} \notin \typ\{HS(\mathbf{A})\}$. 
+\end{theorem}
+
+\begin{thebibliography}{9}
+    \bibitem{finite}
+    Hobby, D., McKenzie, R. (1988). \emph{The structure of Finite Algebras}. Contemporary Mathematics 76, American Mathematical Society.  
+    \bibitem{wnu}
+    Mar\'oti, M., McKenzie, R. (2008). Existence theorems for weakly symmetric operations. \emph{Algebra Universalis} 59, 463-489.
+    \bibitem{classification-minimal} 
+    P\'alfy, P. P. (1984). Unary polynomials in algebras I. \emph{Algebra Universalis} 18, 262-273.
+    %\bibitem{classification}
+    %Szendrei, Á. (1990). Simple surjective algebras having no proper subalgebras. \emph{Journal of the Australian Mathematical Society}, 48(3), 434-454. 
+ \end{thebibliography}
+\end{document}
