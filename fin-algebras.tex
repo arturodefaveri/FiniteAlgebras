@@ -75,7 +75,7 @@
     \end{enumerate}
 and closed under composition. 
 The elements of $\Pol(\mathbf{A})$ are called \textbf{polynomial} operations. 
-We say that two algebras $\mathbf{A}$ and $\mathbf{B}$ on the same carrier are \textbf{polynomial equivalent} if $\Pol(\mathbf{A})=\Pol(\mathbf{B})$. 
+We say that two algebras $\mathbf{A}$ and $\mathbf{B}$ on the same carrier are \textbf{polynomially equivalent} if $\Pol(\mathbf{A})=\Pol(\mathbf{B})$. 
 \end{definition}
 
 \begin{example}
@@ -85,6 +85,20 @@ We say that two algebras $\mathbf{A}$ and $\mathbf{B}$ on the same carrier are \
     \end{equation*}
 is a polynomial operation.  
 \end{example}
+
+\begin{remark}
+    Let $\mathbf{A}$ be an algebra. 
+    An equivalence relation $\alpha$ is a congruence of $\mathbf{A}$ iff $\phi(\alpha) \subseteq \alpha$ for every $\phi \in \Pol_1(\mathbf{A})$. 
+\end{remark}
+
+Let $\mathbf{A}$ be a finite algebra. 
+We adopt the following convention, concerning the restriction $(-|U)$ operation, for $U \subseteq A$: 
+\begin{itemize}
+    \item if $\theta \in \Con(\mathbf{A})$, $\theta | U := \theta \cap U^2$; 
+    \item if $\phi: A^n \to A$, $\phi|U$ is the function $U^n \to A$, $(u_1, \ldots, u_n) \mapsto \phi(u_1, \ldots, u_n)$; 
+    \item $\Pol(\mathbf{A})|U:=\{\psi|U : \psi \in \Pol(\mathbf{A}) \text{ and } \psi[U^n] \subseteq U \}$; 
+    \item $\mathbf{A}||U := (U, \Pol(\mathbf{A})|U)$. 
+\end{itemize}
 
 \section{Finite Minimal Algebras}
 \begin{definition}
@@ -98,10 +112,10 @@ The goal is to classify, up to polynomial equivalence, all the finite minimal al
     \begin{enumerate}
         \item any algebra with carrier $2$; 
         \item a nontrivial finite vector space $\mathbf{A}$ over a finite field $\mathbf{k}$: every $\pi \in \Pol_1(\mathbf{A})$ is of the form $\pi(v)=av+b$ for some $a \in k$, $b \in A$; 
-        \item a group of permutations acting on a finite set\footnote{Let $\mathbf{G}$ be a group acting on a set $A$.  
-        Each $g \in G$ induces an operation $\phi_g: A \to A$ given by $\phi_g(a)=g \cdot a$. 
+        \item a group of permutations acting on a finite set. If $\mathbf{G}$ is a group acting on a set $A$ 
+        each $g \in G$ induces an operation $\phi_g: A \to A$ given by $\phi_g(a)=g \cdot a$. 
         Let $\Phi_\mathbf{G}:=\{\phi_g: g \in G\}$. 
-        A $\mathbf{G}$-set can be seen as an algebra $(A, \Phi_\mathbf{G})$.}.
+        A $\mathbf{G}$-set can be seen as an algebra $(A, \Phi_\mathbf{G})$.
     \end{enumerate}
 \end{example}
 
@@ -109,7 +123,7 @@ We shall prove that, up to polynomial equivalence, there are no other finite min
 
 \begin{lemma}
     Let $\mathbf{A}$ be a minimal algebra.
-    If every element of $\Pol(\mathbf{A})$ is essentially unary, then $\mathbf{A}$ is polynomial equivalent to $(A, \Phi_{\mathbf{G}})$ where $\mathbf{G}$ is a finite group acting on $A$. 
+    If every element of $\Pol(\mathbf{A})$ is essentially unary, then $\mathbf{A}$ is polynomially equivalent to $(A, \Phi_{\mathbf{G}})$ where $\mathbf{G}$ is a finite group acting on $A$. 
     \begin{proof}
         Since $\mathbf{A}$ is minimal, $\Pol_1(\mathbf{A}) \cap \Sym(A)$ is a subgroup of $\Sym(A)$. 
         Let $\mathbf{G}:=\Pol_1(\mathbf{A}) \cap \Sym(A)$. 
@@ -170,15 +184,26 @@ We shall prove that, up to polynomial equivalence, there are no other finite min
     Let $\mathbf{A}$ be a $(\alpha, \beta)$-minimal algebra. 
     An $(\alpha, \beta)$-\textbf{trace} of $\mathbf{A}$ is 
     %$N \subseteq A$ such that for some $U \in \M_{\mathbf{A}}(\alpha, \beta)$ and $x \in U$, $N\subseteq U$ and $N=x/(\beta|U) \neq x/(\alpha|U)$. 
-    a $\beta$-equivalence class which contains at least two $\delta$-equivalence classes. 
+    a $\beta$-equivalence class which contains at least two $\alpha$-equivalence classes. 
 \end{definition}
 
 \begin{lemma}
     Let $\mathbf{A}$ be a finite $(\delta,\theta)$-minimal algebra and let $N$ be a $(\delta, \theta)$-trace. 
-    Then the algebra $(\mathbf{A}||N)/(\delta/N)$ is minimal.  
+    Then the algebra $(\mathbf{A}||N)/(\delta/N)$ is minimal.
+    \begin{proof}
+        We need to show that for every 
+        \begin{equation*}
+            \psi \in \Pol_1((\mathbf{A}||N)/(\delta/N)) = \{ (\phi|N)/(\delta/N) : \phi \in \Pol_1(\mathbf{A}), \phi[N] \subseteq N\}
+        \end{equation*}
+        either $\psi$ is bijective, or $\psi$ is constant. 
+        Let $\psi = (\phi|N)/(\delta/N)$. 
+        Since $\mathbf{A}$ is $(\delta, \theta)$-minimal, either $\phi$ is bijective or $\phi(\theta) \subseteq \delta$. 
+        Clearly, if $\phi$ is bijective, $\psi$ is bijective. 
+        If $\phi(\theta) \subseteq \delta$, $\psi$ is constant: if $(x,y) \in N^2 \subseteq \theta$, then $(\psi(x), \psi(y)) \in \delta$ so that $\psi(x)=\psi(y)$ in $(\mathbf{A}||N)/(\delta/N)$.  
+    \end{proof}  
 \end{lemma}
 
-Therefore, with an abuse of language but unambiguoulsy, we shall refer to the type of $N$. 
+Therefore, with an abuse of language, we shall refer unambiguoulsy to the type of $N$ as the type of $ (\mathbf{A}||N)/(\delta/N)$. 
 
 \begin{definition}
     Let $\mathbf{A}$ be a finite algebra and $B,C \subseteq A$. 
@@ -195,6 +220,64 @@ Therefore, with an abuse of language but unambiguoulsy, we shall refer to the ty
     Then all $(\delta, \theta)$-traces of $\mathbf{A}$ have the same type.
 \end{theorem}
 
+\begin{definition}
+    Let $\mathbf{A}$ be a finite $(\delta, \theta)$-minimal algebra. 
+    We say that $\mathbf{A}$ is of type $\mathbf{i}$ relative to $(\delta, \theta)$ if each $(\delta, \theta)$-trace of $\mathbf{A}$ is of type $\mathbf{i}$. 
+\end{definition}
+
+\begin{lemma}
+    Let $\mathbf{A}$ be a $(\delta, \theta)$-minimal algebra with $\delta \prec \theta$. 
+    Let $N,K$ be two $(\delta, \theta)$-traces. 
+    Then $N$ and $K$ are polynomially isomorphic. 
+    \begin{proof}
+        
+    \end{proof}
+\end{lemma}
+
+\begin{lemma}
+    Let $\mathbf{A}$ be a $(\delta, \theta)$-minimal algebra and $N$ be a $(\delta, \theta)$-trace. 
+    Then 
+    \begin{enumerate}
+        \item $(-|N): [\Delta_A, \theta] \to \Con(\mathbf{A}||N)$ is a surjective lattice homomorphism; 
+        \item quotienting out by $\delta$, there is a surjective lattice homomorphism $[\delta, \theta] \to \Con((\mathbf{A}||N)/(\delta|N))$; 
+        \item if any two $(\delta, \theta)$-traces are polynomially isomorphic, then the map of the second item is an isomorphism. 
+    \end{enumerate}
+    \begin{proof}
+        Clearly, the map is well defined and preserves meets. 
+        We show that 
+        \begin{equation*}
+            (\alpha \lor \beta) \cap N^2 = (\alpha \cap N^2) \lor (\beta \cap N^2) \text{.}
+        \end{equation*}
+        Let $(x,y) \in (\alpha \lor \beta) \cap N^2$. 
+        Then there are $x=x_0, \ldots, x_{n+1}=y$ such that either $(x_i,x_{i+1}) \in \alpha$ or $(x_i,x_{i+1}) \in \beta$. 
+        We show that for each $i$, $(x_i, x_{i+1}) \in N^2$. 
+        Inductively, if $x_i \in N$, and, say, $(x_i, x_{i+1}) \in \alpha \subseteq \theta$, then $x_{i+1} \in N$. 
+        Now, for $\beta \in \Con(\mathbf{A}||N)$, let $\hat{\beta}$ be
+        \begin{equation*}
+            \{(x,y) \in \theta : (\psi(x), \psi(y)) \in N^2 \implies (\psi(x), \psi(y)) \in \beta \quad \A \psi \in \Pol_1(\mathbf{A}) \}
+        \end{equation*}
+        Then $\hat{\beta}$ is a congruence. 
+        We show that $\hat{\beta} \cap N^2 =\beta$, proving surjectivity. 
+        If $(x,y) \in \hat{\beta}$, then $(\psi(x), \psi(y)) \in N^2 \implies (\psi(x), \psi(y)) \in \beta$ for all $\psi \in \Pol_1(\mathbf{A})$; 
+        if $(x,y) \in N^2$, then $(\psi(x), \psi(y)) \in N^2$. 
+        Therefore $(\psi(x), \psi(y)) \in \beta$ for all $\psi \in \Pol_1(\mathbf{A})$, and, taking $\psi(x)=x$, $(x,y) \in \beta$. 
+        Conversely, let $(x,y) \in \beta$. As $\beta \subseteq N^2 \subseteq \theta$, $(x,y) \in \theta$. 
+        Let $\psi \in \Pol_1(\mathbf{A})$. 
+        If $(\psi(x), \psi(y)) \in N^2$, then $\psi \in \Pol_1(\mathbf{A}||N)$. 
+        Since $\beta \in \Con(\mathbf{A}||N)$, $ (\psi(x), \psi(y)) \in \beta$.  
+
+        The second item immediately follows. As to the third, we need to prove injectivity. 
+        Let $\delta \le \alpha < \beta \le \theta$. 
+        Let $(x,y) \in \beta - \alpha$. 
+        Then $(x,y) \in \theta - \delta$. 
+        Let $P$ be the 
+    \end{proof}
+\end{lemma}
+
+
+
+
+
 \section{Tame Congruences}
 
 \begin{definition}
@@ -203,28 +286,18 @@ Therefore, with an abuse of language but unambiguoulsy, we shall refer to the ty
     \begin{enumerate}
         \item $\Id(\mathbf{A})$ the set of $ \epsilon \in \Pol_1(\mathbf{A})$ such that $\epsilon^2 = \epsilon$; 
         \item $\U_{\mathbf{A}}(\alpha, \beta)$ the set $\{\phi[A] : \phi \in \Pol_1(\mathbf{A}), \phi(\beta) \nsubseteq \alpha\}$; 
-        \item $\M_{\mathbf{A}}(\alpha, \beta)$ the set of minimal elements of $\U_{\mathbf{A}}(\alpha, \beta)$. 
+        \item $\M_{\mathbf{A}}(\alpha, \beta)$ the set of minimal (with respect to the inclusion relation) elements of $\U_{\mathbf{A}}(\alpha, \beta)$. 
     \end{enumerate}
 \end{definition}
 
 \begin{remark}
-    Let $\mathbf{A}$ be an algebra. 
-    An equivalence relation $\alpha$ is a congruence of $\mathbf{A}$ iff $\phi(\alpha) \subseteq \alpha$ for every $\phi \in \Pol_1(\mathbf{A})$. 
+    A finite algebra $\mathbf{A}$ is $(\delta, \theta)$-minimal iff $A \in \M_{\mathbf{A}}(\delta, \theta)$. 
 \end{remark}
-
-Let $\mathbf{A}$ be a finite algebra. 
-In this section we adopt the following convention, concerning the restriction $(-|U)$ operation, for $U \subseteq A$: 
-\begin{itemize}
-    \item if $\theta \in \Con(\mathbf{A})$, $\theta | U := \theta \cap U^2$; 
-    \item if $\phi: A^n \to A$, $\phi| U$ is the function $U^n \to A$, $(u_1, \ldots, u_n) \mapsto \phi(u_1, \ldots, u_n)$; 
-    \item $\Pol(\mathbf{A})|U:=\{\psi|U : \psi \in \Pol(\mathbf{A}) \text{ and } \psi[U^n] \subseteq U \}$; 
-    \item $\mathbf{A}||U := (U, \Pol(\mathbf{A})|U)$. 
-\end{itemize}
 
 \begin{lemma}
     Let $\mathbf{A}$ be a finite algebra. 
     Let $\epsilon \in \Id(\mathbf{A})$, $U=\epsilon[A]$. 
-    Then $(-|U): \Con(\mathbf{A}) \to \Con(\mathbf{A}||U)$ is a surjective $(\land, \lor)$-homomorphism.
+    Then $(-|U): \Con(\mathbf{A}) \to \Con(\mathbf{A}||U)$ is a surjective lattice homomorphism.
 \end{lemma}
 
 \begin{lemma}
@@ -244,8 +317,9 @@ In this section we adopt the following convention, concerning the restriction $(
 \begin{definition}
     Let $\mathbf{A}$ be a finite algebra and $\alpha, \beta \in \Con(\mathbf{A})$ with $\alpha < \beta$. 
     The pair $(\alpha, \beta)$ is a pair of \textbf{tame} congruences if there is $V \in \M_{\mathbf{A}}(\alpha, \beta)$, $\epsilon \in \Id(\mathbf{A})$ such that $\epsilon[A]=V$ and 
-    $(-|V): [\alpha, \beta] \to [\alpha|V, \beta|V]$ is $0,1$-separating\footnote{Let $\mathbf{L}$, $\mathbf{N}$ be two lattices. 
-    A $(\land, \lor)$-homomorphism $\alpha: \mathbf{L} \to \mathbf{N}$ is $0,1$-\textbf{separating} if $\alpha^{-1}[\{\alpha(i)\}]=i$ for $i=0,1$.}. 
+    $(-|V): [\alpha, \beta] \to [\alpha|V, \beta|V]$ is $0,1$-separating
+    
+    A $(\land, \lor)$-homomorphism $\alpha: \mathbf{L} \to \mathbf{N}$ is $0,1$-\textbf{separating} if $\alpha^{-1}[\{\alpha(i)\}]=i$ for $i=0,1$. 
 \end{definition}
 
 \begin{lemma}
@@ -306,12 +380,6 @@ In this section we adopt the following convention, concerning the restriction $(
         Therefore $\epsilon \in \Id(\mathbf{A})$. 
     \end{proof}
 \end{lemma}
-
-\begin{definition}
-    Let $\mathbf{A}$ be a finite algebra minimal with respect to $(\delta, \theta)$. 
-    We say that $\mathbf{A}$ has \textbf{type} $\mathbf{i}$ relative to $(\delta, \theta)$ if for every $(\delta, \theta)$-trace $N$, 
-    $(\mathbf{A}||N)/(\delta|N)$ is a minimal algebra of type $\mathbf{i}$. 
-\end{definition}
 
 \begin{definition}
     Let $(\alpha, \beta)$ be tame in a finite algebra $\mathbf{A}$. 
@@ -455,7 +523,7 @@ Finally, for a finite algebra $\mathbf{A}$, we define $\typ\{\mathbf{A}\}:=\{\ty
 
         Conversely, let $\mathbf{B} \in HS(\mathbf{A})$ such that $\Clo(\mathbf{B})=\mathbf{N}$; 
         this means that $\mathbf{B}$ is term equivalent to a set. 
-        Hence $\mathbf{B}$ is polynomial equivalent to a set on which the trivial group acts. 
+        Hence $\mathbf{B}$ is polynomially equivalent to a set on which the trivial group acts. 
         Then $\mathbf{1} \in \typ\{\mathbf{B}\}$, and therefore $\mathbf{1} \in \typ\{HS(\mathbf{A})\}$. 
     \end{proof}
 \end{corollary}
