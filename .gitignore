@@ -1,6 +1,7 @@
-*.fdb_latexmk
-*.log
-*.gz
-*.aux
-*.fls
-*.out
+
+fin-algebras.aux
+fin-algebras.fdb_latexmk
+fin-algebras.fls
+fin-algebras.log
+fin-algebras.out
+fin-algebras.synctex.gz
