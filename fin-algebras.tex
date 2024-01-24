@@ -291,14 +291,9 @@ The following is an example of a sufficient condition that guarantees that the l
     Let $N,K$ be two $(\delta, \theta)$-traces. 
     Then $N$ and $K$ are polynomially isomorphic. 
     \begin{proof}
-        
+        \textcolor{blue}{to complete}
     \end{proof}
 \end{lemma}
-
-
-
-
-
 
 \section{Tame Congruences}
 
@@ -354,13 +349,17 @@ The following is an example of a sufficient condition that guarantees that the l
     Let $(\alpha, \beta)$ be a tame pair of congruences of a finite algebra $\mathbf{A}$.
     For every $U \in \M_{\mathbf{A}}(\alpha, \beta)$, 
     \begin{enumerate} 
-        \item $\mathbf{A}||U$ is $(\alpha|U, \beta|U)$-minimal; 
+        \item $\mathbf{A}||U$ is $(\alpha|U, \beta|U)$-minimal;
         \item there  is $\epsilon \in \Id(\mathbf{A})$ such that $\epsilon[A]=U$; 
-        \item $(-|U): [\delta, \theta] \to \Con(\mathbf{A}||U)$ is a surjective lattice homomorphism which is $0,1$-separating. 
+        \item $(-|U): [\delta, \theta] \to \Con(\mathbf{A}||U)$ is a surjective lattice homomorphism which is $0,1$-separating.
     \end{enumerate}
     Moreover, any two $(\alpha, \beta)$-minimal sets are polynomially isomorphic. 
     \begin{proof}
-        Since $(\alpha, \beta)$ is tame, there is $V_0 \in \M_\mathbf{A}(\alpha,\beta)$ and $\epsilon_0 \in \Id(\mathbf{A})$ such that $V_0 = \epsilon_0[A]$ and $(-|V_0)$ is $0,1$-separating. 
+        The first item does not depend on $(\alpha, \beta)$ being tame. 
+        Let $\phi \in \Pol_1(\mathbf{A})$ with $\phi[U] \subseteq U$ and $\phi(\beta) \nsubseteq \alpha$. 
+        Then $\phi[U]=U$ by $(\alpha, \beta)$-minimality, so that $\phi \in \Sym(A)$. 
+
+        As to the second: since $(\alpha, \beta)$ is tame, there is $V_0 \in \M_\mathbf{A}(\alpha,\beta)$ and $\epsilon_0 \in \Id(\mathbf{A})$ such that $V_0 = \epsilon_0[A]$ and $(-|V_0)$ is $0,1$-separating. 
         \begin{claim}
             \label{lemma_pol_claim1}
             If $(x,y) \in \beta - \alpha$, there is $\phi \in \Pol_1(\mathbf{A})$ with $\phi[A]=V_0$ and such that $(\phi(x), \phi(y)) \in \beta|V_0 - \alpha|V_0$. 
@@ -411,12 +410,21 @@ The following is an example of a sufficient condition that guarantees that the l
         Let $\epsilon:=(\mu_1 \nu)^k$.
         We have: $\epsilon[A] = (\mu_1 \nu)^k[A]=(\mu_1 \nu)^{k-1}[U]=U$ and, consequently, for all $a \in A$, $\epsilon^2(a)=\epsilon(a)$ since $\epsilon(a) \in U$. 
         Therefore $\epsilon \in \Id(\mathbf{A})$. 
+
+        We prove the third statement. 
+        Clearly, the map is well defined and preserves meets. 
+        For $\theta \in [\alpha|U, \beta|U]$, 
+        \textcolor{blue}{to complete} 
+
+        Finally, in the above notation, let $\phi:=\nu$, $\psi:=(\mu_1 \nu)^{k-1} \mu_1$. 
+        Then $\phi[U] = V_0, \psi[V_0]=U$ and $\psi \phi | U = 1_U, \phi \psi | V_0 = 1_{V_0}$. 
+        Then fact that any $(\alpha, \beta)$-minimal set is polynomially isomorphic to $V_0$ implies that any two $(\alpha, \beta)$-minimal sets are polynomially isomorphic. 
     \end{proof}
 \end{theorem}
 
 \begin{definition}
     Let $(\alpha, \beta)$ be tame in a finite algebra $\mathbf{A}$. 
-    An $(\alpha, \beta)$-\textbf{trace} of $\mathbf{A}$ is 
+    An $(\alpha, \beta)$-\textbf{trace$^*$} of $\mathbf{A}$ is 
     $N \subseteq A$ such that for some $U \in \M_{\mathbf{A}}(\alpha, \beta)$ and $x \in U$, $N\subseteq U$ and $N=x/(\beta|U) \neq x/(\alpha|U)$. 
     That is, $N$ is an $(\alpha|U, \beta|U)$-trace of the minimal algebra $\mathbf{A}||U$. 
 \end{definition}
@@ -424,14 +432,14 @@ The following is an example of a sufficient condition that guarantees that the l
 \begin{definition}
     Let $(\alpha, \beta)$ be tame in a finite algebra $\mathbf{A}$.
     Let $\delta, \theta \in \Con(\mathbf{A})$. 
-    Let $K$ be a class of finite algebras. 
+    Let $K$ be a class of algebras. 
     We define 
     \begin{enumerate}
         \item the \textbf{type} of $(\alpha, \beta)$, written $\typ(\alpha, \beta)$, to be the type of
         $\mathbf{A}||U$ relative to $(\alpha|U, \beta|U)$;
         \item $\typ\{\delta, \theta\} :=\{ \typ(\alpha, \beta) : \delta \le \alpha \prec \beta \le \beta\}$;
         \item $\typ\{\mathbf{A}\}: =\typ\{\Delta_A, \nabla_A\}$; 
-        \item $\typ\{K\}:=\cup\{\typ\{\mathbf{A}\} : \mathbf{A} \in K\}$. 
+        \item $\typ\{K\}:=\cup\{\typ\{\mathbf{A}\} : \mathbf{A} \in K_{\fin}\}$. 
     \end{enumerate}
     %Let $N$ be a $(\alpha,\beta)$-trace of $\mathbf{A}$. 
     %the minimal algebra $(\mathbf{A}||N)/(\alpha|N)$.
@@ -443,7 +451,15 @@ The following is an example of a sufficient condition that guarantees that the l
 
 \begin{lemma}
     Let $(\alpha, \beta)$ be tame in a finite algebra $\mathbf{A}$.
-    For every $(\alpha, \beta)$-trace of $\mathbf{A}$, the algebra $(\mathbf{A}||N)/(\alpha|N)$ is minimal and $\typ(\alpha, \beta) = \typ((\mathbf{A}||N)/(\alpha|N))$. 
+    For every $(\alpha, \beta)$-trace$^*$ of $\mathbf{A}$, the algebra $(\mathbf{A}||N)/(\alpha|N)$ is minimal and $\typ(\alpha, \beta) = \typ((\mathbf{A}||N)/(\alpha|N))$. 
+    \begin{proof}
+        Let $U$ be any $(\alpha, \beta)$-minimal set and $N$ be an $(\alpha|U, \beta|U)$-trace. 
+        The algebra $\mathbf{A}||U$ is minimal relative to $(\alpha|U, \beta|U)$. 
+        By Lemma \ref{lemma_ex} $\mathbf{A}||N = (\mathbf{A}||U)||N$ and consequently $(\mathbf{A}||N)/(\alpha|N) = ((\mathbf{A}||U)||N)/((\alpha|U)|N)$. 
+        The type of $\mathbf{A}||U$ relative to $(\alpha|U, \beta|U)$ is, by definition, the type of the minimal algebra $\mathbf{M}:= ((\mathbf{A}||U)||N)/((\alpha|U)|N)$; 
+        but $M$ is the only $(\Delta_M, \nabla_M)$-trace of $\mathbf{M}$, hence this is $\typ(\mathbf{M})$. 
+
+    \end{proof}
 \end{lemma}
 
 
@@ -513,7 +529,7 @@ The following is an example of a sufficient condition that guarantees that the l
 
 \begin{remark}
     Let $\mathsf{W}, \mathsf{V}$ be two varieties. 
-    We unravel what $\mathsf{W} \le \mathsf{V}$ means in a simple case. 
+    We unravel what $\mathsf{V} \le \mathsf{W}$ means in a simple case, that is when $\mathsf{V}$ is finitely presented. 
     Let $F$ be a finite set of function symbols.
     Let $\mathsf{V}$ be a variety of algebras over $F$, defined by the equations 
     \begin{equation}
@@ -522,7 +538,7 @@ The following is an example of a sufficient condition that guarantees that the l
     \end{equation} 
     Assume that for each $f \in F_n$ there is $t \in \Clo_n(\mathsf{W})$ such that the interpetation of the $t$'s satisfy the equations \eqref{remark_clone}. 
     Then the assignment $f \mapsto t$ extends to a clone homomorphism $\Clo(\mathsf{V}) \to \Clo(\mathsf{W})$. 
-    Of course, the converse also holds; thus this is equivalent to $\mathsf{W} \le \mathsf{V}$. 
+    Of course, the converse also holds; thus this is equivalent to $\mathsf{V} \le \mathsf{W}$. 
 \end{remark}
 
 \begin{lemma}
@@ -533,8 +549,9 @@ The following is an example of a sufficient condition that guarantees that the l
         \item finitely presented; 
         \item the finite set of equations defining $\mathsf{W}$ contains at most one function symbol per side. 
     \end{itemize}
-    Let $\mathbf{A} \in \mathsf{V}$, $\epsilon \in \Id(\mathbf{A})$, $U:=\epsilon[A]$, $\beta \in \Con(\mathbf{A})$ and $S:=a/\beta \cap U$ for $a \in U$. 
-    Then $\mathsf{W} \le V(\mathbf{A}||S)$. 
+    Let $\mathbf{A} \in \mathsf{V}$, $\epsilon \in \Id(\mathbf{A})$, $U:=\epsilon[A]$, $\beta \in \Con(\mathbf{A})$ and $N:=a/\beta \cap U$ for $a \in U$. 
+    Then $\mathsf{W} \le V(\mathbf{A}||N)$. 
+    Moreover, if $\mathbf{1} \in \typ\{\mathsf{V}\}$, then $\mathsf{W} \le \mathsf{Set}$. 
     \begin{proof}
         By assumption $\mathsf{W}$ can be described by a finite set of equations of the form 
         \begin{equation}
@@ -542,19 +559,61 @@ The following is an example of a sufficient condition that guarantees that the l
         \end{equation}
         where $f_i$ and $f_j$ are members of a finite set $F$ of function symbols. 
         Since $\mathsf{W} \le  \mathsf{V}$, there is an assignment $f \mapsto t$ extending to a clone homomorphism. 
-        We need to find a clone homomorphism $\Clo(\mathsf{W}) \to \Clo(\mathbf{A}||S)$. 
-        Consider $f \mapsto \phi:=\epsilon t_i^\mathbf{A} |S$. 
+        We need to find a clone homomorphism $\Clo(\mathsf{W}) \to \Clo(\mathbf{A}||N)$. 
+        Consider $f \mapsto \phi:=\epsilon t_i^\mathbf{A} |N$. 
         Firstly, it is well defined: if $(a_1, \ldots, a_n) \in S$, $(\phi(a_1, \ldots, a_n), \phi(a, \ldots, a)) \in \beta$ but 
         \begin{equation*}
             \phi(a, \ldots, a) = \epsilon t^\mathbf{A} (a, \ldots, a) = \epsilon(a) \in U
         \end{equation*}
-        so that $\phi(a_1, \ldots, a_n) \in S$ and therefore $\phi \in \Pol(\mathbf{A})|S$. 
+        so that $\phi(a_1, \ldots, a_n) \in S$ and therefore $\phi \in \Pol(\mathbf{A})|N$. 
         Finally, using that $\mathsf{W} \le  \mathsf{V}$
         \begin{align*}
             \phi_i(a_{i_1}, \ldots, a_{i_h}) & = \epsilon t_i^\mathbf{A} (a_{i_1}, \ldots, a_{i_h}) \\
             & = \epsilon t_j^\mathbf{A} (a_{j_1}, \ldots, a_{j_k})\\
-            & = \phi_j(a_{j_1}, \ldots, a_{j_k}) \text{.} \qedhere\\
+            & = \phi_j(a_{j_1}, \ldots, a_{j_k}) \text{.} \\
         \end{align*} 
+        If $\mathbf{1} \in \typ\{\mathsf{V}\}$. 
+        Then there are $\alpha \prec \beta \in \Con(\mathbf{A})$ such that $\typ(\alpha, \beta) =\mathbf{1}$. 
+        Without loss of generality we can assume that $\alpha = \Delta_A$. 
+        Let $N$ be a $(\Delta_A, \beta)$-trace$^{*}$.
+        Then there are $\epsilon \in \Id(\mathbf{A})$, $U:=\epsilon[A]$ such that $N = a /\beta \cap U$ for some $a \in U$. 
+        Thus $\mathsf{W} \le V(\mathbf{A}||N)$. 
+        \begin{claim}
+            Let $\mathbf{M}$ be finite minimal algebra of unary type. 
+            Let $\mathbf{A}=(M, \Pol(\mathbf{M}))$.
+            Then $V(\mathbf{A})$ contains a finite algebra $\mathbf{S}$ all of whose polynomials are constant or projections. 
+            \begin{proof}
+                Let $\mathbf{G}:=\Sym(M) \cap \Pol_1(\mathbf{M})$, subgroup of $\Sym(M)$. 
+                Let $u,v \in M$, $u \neq v$ and let 
+                \begin{equation*}
+                    D:=\{(\sigma(u), \sigma(v)) : \sigma \in \mathbf{G}\} \cup \{(\sigma(v), \sigma(u)) : \sigma \in \mathbf{G}\}
+                \end{equation*}
+                Since $\mathbf{M}$ is minimal with $\typ(\mathbf{M})=\mathbf{1}$, every polynomial $\psi$ is constant or there is $i$, $\sigma \in \mathbf{G}$ such that 
+                \begin{equation*}
+                    \psi(a_1, \ldots, a_n) = \sigma(a_i) \text{.}
+                \end{equation*}
+                This implies that $\mathbf{D}$ is a subalgebra of $\mathbf{A}^2$. 
+                Let 
+                \begin{equation*}
+                    ((x_1, x_2), (y_1,y_2)) \in \theta \iff \sigma(x_i)=y_i \text{ for some } \sigma \in \mathbf{G}
+                \end{equation*}
+                We show that every term operation of $\mathbf{D}/\theta$ is either constant or a projection. 
+                Let $\psi \in \Pol_n(\mathbf{M})$ non constant and $(a_i,b_i) \in D$ for $i=1, \ldots, n$. 
+                Then there is $\tau \in \mathbf{G}$ such that 
+                \begin{align*}
+                   \psi((a_1, b_1)/\theta, \ldots, (a_n, b_n)/\theta) & = \psi((a_1, b_1), \ldots, (a_n, b_n)) /\theta \\
+                   & = (\psi(a_1, \ldots, a_n), \psi(b_1,\ldots, b_n)) / \theta \\
+                   & = (\tau(a_i), \tau(b_i)) / \theta \\
+                   & = (a_i, b_i) / \theta \text{.} \qedhere \\
+                \end{align*}
+            \end{proof}
+        \end{claim}
+        Let $\mathbf{S} \in V(\mathbf{A}||N)$ be such that every term operation of $\mathbf{S}$ is constant or a projection. 
+        Then there is a clone homomorphism $\Clo(\mathbf{A}||N) \to \Clo(\mathbf{S})$.
+        Since $\mathsf{W} \le V(\mathbf{A}||N)$ there is a clone homomorphism $\Clo(W) \to \Clo(\mathbf{A}||N)$. 
+        Thus we get a clone homomorphism $\Clo(W) \to \Clo(\mathbf{S})$. 
+        But for every $f \in F$, $\mathsf{W}$ satisfies $f(x, \ldots, x) \equiv x$, hence the image of $f$ through this clone homomorphism cannot be but a projection. 
+        This implies that $\mathsf{W} \le \mathsf{Set}$. 
     \end{proof}
 \end{lemma}
 
