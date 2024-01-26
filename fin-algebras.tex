@@ -130,7 +130,7 @@ The goal is to classify, up to polynomial equivalence, all the finite minimal al
     \end{enumerate}
 \end{example}
 
-We shall prove that, up to polynomial equivalence, there are no other finite minimal algebras. 
+We shall see that, up to polynomial equivalence, there are no other finite minimal algebras. 
 
 \begin{lemma}
     Let $\mathbf{A}$ be a minimal algebra.
@@ -181,53 +181,40 @@ We shall prove that, up to polynomial equivalence, there are no other finite min
     \end{enumerate}
 \end{definition}
 
-\section{Relative Minimal Algebras} 
+\section{Minimal Algebras Relative to a Congruence}
 \begin{definition}
-    Let $\mathbf{A}$ be a finite algebra and let $\delta < \theta \in \Con(\mathbf{A})$. 
-    We say that $\mathbf{A}$ is $(\delta, \theta)$-\textbf{minimal} if for all $\epsilon \in \Pol_1(\mathbf{A})$ either $\epsilon$ is bijective or $\epsilon(\theta) \subseteq \delta$. 
+    Let $\mathbf{A}$ be a finite algebra and let $ \theta \in \Con(\mathbf{A}), \Delta_A \neq \theta$. 
+    We say that $\mathbf{A}$ is $\theta$-\textbf{minimal} if for all $\epsilon \in \Pol_1(\mathbf{A})$ either $\epsilon$ is bijective or $\epsilon$ is constant on the $\theta$-equivalence classes. 
 \end{definition}
 
 \begin{remark}
-    Observe that $\mathbf{A}$ is minimal iff $\mathbf{A}$ is $(\Delta, \nabla)$-minimal. 
+    Observe that $\mathbf{A}$ is minimal iff $\mathbf{A}$ is $\nabla_A$-minimal. 
 \end{remark}
 
 \begin{definition}
     %Let $(\alpha, \beta)$ be tame in a finite algebra $\mathbf{A}$. 
-    Let $\mathbf{A}$ be a $(\alpha, \beta)$-minimal algebra. 
-    An $(\alpha, \beta)$-\textbf{trace} of $\mathbf{A}$ is 
+    Let $\mathbf{A}$ be a $\theta$-minimal algebra. 
+    A $\theta$-\textbf{trace} of $\mathbf{A}$ is 
     %$N \subseteq A$ such that for some $U \in \M_{\mathbf{A}}(\alpha, \beta)$ and $x \in U$, $N\subseteq U$ and $N=x/(\beta|U) \neq x/(\alpha|U)$. 
-    a $\beta$-equivalence class which contains at least two $\alpha$-equivalence classes. 
+    a nontrivial $\theta$-equivalence class.  
+    %which contains at least two $\alpha$-equivalence classes. 
 \end{definition}
 
 \begin{lemma}
-    Let $\mathbf{A}$ be a finite $(\delta,\theta)$-minimal algebra and let $N$ be a $(\delta, \theta)$-trace. 
-    Then the algebra $(\mathbf{A}||N)/(\delta|N)$ is minimal.
+    Let $\mathbf{A}$ be a finite $\theta$-minimal algebra and let $N$ be a $\theta$-trace. 
+    Then the algebra $\mathbf{A}||N$ is minimal.
     \begin{proof}
         We need to show that for every 
         \begin{equation*}
-            \psi \in \Pol_1((\mathbf{A}||N)/(\delta|N)) = \{ (\phi|N)/(\delta|N) : \phi \in \Pol_1(\mathbf{A}), \phi[N] \subseteq N\}
+            \psi \in \Pol_1(\mathbf{A}||N) = \{ \phi|N : \phi \in \Pol_1(\mathbf{A}), \phi[N] \subseteq N\}
         \end{equation*}
         either $\psi$ is bijective, or $\psi$ is constant. 
-        Let $\psi = (\phi|N)/(\delta|N)$. 
-        Since $\mathbf{A}$ is $(\delta, \theta)$-minimal, either $\phi$ is bijective or $\phi(\theta) \subseteq \delta$. 
-        Clearly, if $\phi$ is bijective, $\psi$ is bijective. 
-        If $\phi(\theta) \subseteq \delta$, $\psi$ is constant: if $(x,y) \in N^2 \subseteq \theta$, then $(\psi(x), \psi(y)) \in \delta$ so that $\psi(x)=\psi(y)$ in $(\mathbf{A}||N)/(\delta|N)$.  
+        Let $\psi = \phi|N$. 
+        Since $\mathbf{A}$ is $\theta$-minimal, either $\phi$ is bijective or $\phi$ is constant on the $\theta$-equivalence classes. 
+        Clearly, in the first case $\psi$ is bijective, in the second $\psi$ is constant.  
+        %If $\phi(\theta) \subseteq \delta$, $\psi$ is constant: if $(x,y) \in N^2 \subseteq \theta$, then $(\psi(x), \psi(y)) \in \delta$ so that $\psi(x)=\psi(y)$ in $(\mathbf{A}||N)/(\delta|N)$.  
     \end{proof}  
 \end{lemma}
-
-Therefore, with an abuse of language, we shall refer unambiguoulsy to the type of $N$ as the type of $ (\mathbf{A}||N)/(\delta|N)$. 
-
-
-\begin{theorem}
-    Let $\mathbf{A}$ be a $(\delta, \theta)$-minimal algebra. 
-    Then all $(\delta, \theta)$-traces of $\mathbf{A}$ have the same type.
-\end{theorem}
-
-\begin{definition}
-    Let $\mathbf{A}$ be a finite $(\delta, \theta)$-minimal algebra. 
-    We say that $\mathbf{A}$ is of type $\mathbf{i}$ relative to $(\delta, \theta)$ if each $(\delta, \theta)$-trace of $\mathbf{A}$ is of type $\mathbf{i}$. 
-\end{definition}
-
 
 \begin{definition}
     Let $\mathbf{A}$ be a finite algebra and $B,C \subseteq A$. 
@@ -237,15 +224,24 @@ Therefore, with an abuse of language, we shall refer unambiguoulsy to the type o
 
 \begin{remark}
     If $B,C \subseteq A$ are polynomial isomorphic in $\mathbf{A}$, then $\mathbf{A}||B \simeq \mathbf{A}||C$. 
+    Let $\pi:=\phi|B$, so that $\pi^{-1}=\psi|C$.    
+    Of course, $\pi: B \to C$ is a bijection. 
+    We show that $\pi$ is a homomorphism. 
+    Let $f \in \Pol_n(\mathbf{A})$ such that $f[B^n] \subseteq B$. 
+    Then $g(-, \ldots, -):=\pi f(\pi^{-1}(-), \ldots, \pi^{-1}(-)) \in \Pol_n(\mathbf{A})$ too, $g[C^n] \subseteq C$ and 
+    \begin{equation*}
+        \pi f(b_1, \ldots, b_n) = g(\pi(b_1, \ldots, b_n))
+    \end{equation*}
+    for all $b_1, \ldots, b_n \in B^n$. 
 \end{remark}
 
 \begin{lemma}
-    Let $\mathbf{A}$ be a $(\delta, \theta)$-minimal algebra and $N$ be a $(\delta, \theta)$-trace. 
+    \label{lemma_relative}
+    Let $\mathbf{A}$ be a $\theta$-minimal algebra and $N$ be a $\theta$-trace. 
     Then 
     \begin{enumerate}
         \item $(-|N): [\Delta_A, \theta] \to \Con(\mathbf{A}||N)$ is a surjective lattice homomorphism; 
-        \item quotienting out by $\delta$, there is a surjective lattice homomorphism $[\delta, \theta] \to \Con((\mathbf{A}||N)/(\delta|N))$; 
-        \item if any two $(\delta, \theta)$-traces are polynomially isomorphic, then the map of the second item is an isomorphism. 
+        \item if any two $\theta$-traces are polynomially isomorphic, then it is an isomorphism. 
     \end{enumerate}
     \begin{proof}
         Clearly, the map is well defined and preserves meets. 
@@ -271,7 +267,94 @@ Therefore, with an abuse of language, we shall refer unambiguoulsy to the type o
         If $(\psi(x), \psi(y)) \in N^2$, then $\psi \in \Pol_1(\mathbf{A}||N)$. 
         Since $\beta \in \Con(\mathbf{A}||N)$, $ (\psi(x), \psi(y)) \in \beta$.  
 
-        The second item immediately follows. As to the third, we need to prove injectivity. 
+        We need to prove injectivity. 
+        Let $\alpha < \beta \le \theta$. 
+        Let $(x,y) \in \beta - \alpha$. 
+        Then $(x,y) \in \theta$ and $P:=x/\theta$ is a $\theta$-trace. 
+        Since $P$ is polynomially isomorphic to $N$, there is $\psi \in \Pol_1(\mathbf{A})$ such that 
+        \begin{equation*}
+            \psi[P] = \psi[x/\theta] =\{\psi(z): (x,z) \in \theta\}= N \text{.}
+        \end{equation*}
+        Then, $(\psi(x),\psi(y)) \in \theta \cap N^2$.
+        Also, $(\psi(x),\psi(y)) \in \beta - \alpha$, so that $(\psi(x),\psi(y)) \in \beta|N - \alpha|N$ and $\alpha|N/< \beta|N$. 
+    \end{proof}
+\end{lemma}
+
+\begin{lemma}
+    Let $\mathbf{A}$ be a $\theta$-minimal algebra with $\Delta_A \prec \theta$. 
+    Let $N,K$ be two $\theta$-traces. 
+    Then $N$ and $K$ are polynomially isomorphic. 
+    \begin{proof}
+        Since $\Delta_A \prec \theta$, $\theta_{\mathbf{A}}(N)=\theta$. 
+        But $\theta_{\mathbf{A}}(N)$ is the transitive closure of the relation 
+        $\{(\psi(x), \psi(y)) : (x,y) \in N^2, \psi \in \Pol_1(\mathbf{A})\}$. 
+        Then, as $K$ is a $\theta$-class, there is $\phi \in \Pol_1(\mathbf{A})$ such that $\phi[N] \cap K \neq \varnothing$ 
+        and $\phi$ is not constant on $N$. 
+        This implies that $\phi \in \Sym(A)$, so that $\phi[N]=K$. 
+        Similarly, there is $\psi \in \Pol_1(\mathbf{A}) \cap \Sym(A)$ such that $\psi[N]=K$. 
+        Now, $\psi \phi \in \Sym(A)$, hence $(\psi \phi)^k = 1_A$ for some $k > 0$. 
+        The polynomials $\phi(\psi \phi)^{k-1}$ and $\psi$ witness that $N \sim K$.
+    \end{proof}
+\end{lemma}
+
+\section{Minimal Algebras Relative to a Pair} 
+\begin{definition}
+    Let $\mathbf{A}$ be a finite algebra and let $\delta < \theta \in \Con(\mathbf{A})$. 
+    We say that $\mathbf{A}$ is $(\delta, \theta)$-\textbf{minimal} if for all $\epsilon \in \Pol_1(\mathbf{A})$ either $\epsilon$ is bijective or $\epsilon(\theta) \subseteq \delta$. 
+\end{definition}
+
+\begin{remark}
+    Observe that $\mathbf{A}$ is minimal iff $\mathbf{A}$ is $(\Delta, \nabla)$-minimal. 
+\end{remark}
+
+\begin{definition}
+    %Let $(\alpha, \beta)$ be tame in a finite algebra $\mathbf{A}$. 
+    Let $\mathbf{A}$ be a $(\delta, \theta)$-minimal algebra. 
+    An $(\alpha, \beta)$-\textbf{trace} of $\mathbf{A}$ is 
+    %$N \subseteq A$ such that for some $U \in \M_{\mathbf{A}}(\alpha, \beta)$ and $x \in U$, $N\subseteq U$ and $N=x/(\beta|U) \neq x/(\alpha|U)$. 
+    a $\beta$-equivalence class which contains at least two $\alpha$-equivalence classes. 
+\end{definition}
+
+\begin{lemma}
+    Let $\mathbf{A}$ be a finite $(\delta,\theta)$-minimal algebra and let $N$ be a $(\delta, \theta)$-trace. 
+    Then the algebra $(\mathbf{A}||N)/(\delta|N)$ is minimal.
+    \begin{proof}
+        We need to show that for every 
+        \begin{equation*}
+            \psi \in \Pol_1((\mathbf{A}||N)/(\delta|N)) = \{ (\phi|N)/(\delta|N) : \phi \in \Pol_1(\mathbf{A}), \phi[N] \subseteq N\}
+        \end{equation*}
+        either $\psi$ is bijective, or $\psi$ is constant. 
+        Let $\psi = (\phi|N)/(\delta|N)$. 
+        Since $\mathbf{A}$ is $(\delta, \theta)$-minimal, either $\phi$ is bijective or $\phi(\theta) \subseteq \delta$. 
+        Clearly, if $\phi$ is bijective, $\psi$ is bijective. 
+        If $\phi(\theta) \subseteq \delta$, $\psi$ is constant: if $(x,y) \in N^2 \subseteq \theta$, then $(\psi(x), \psi(y)) \in \delta$ so that $\psi(x)=\psi(y)$ in $(\mathbf{A}||N)/(\delta|N)$.  
+    \end{proof}  
+\end{lemma}
+
+Therefore, with an abuse of language, we shall refer unambiguoulsy to the type of $N$ as the type of $ (\mathbf{A}||N)/(\delta|N)$. 
+
+\begin{theorem}
+    Let $\mathbf{A}$ be a $(\delta, \theta)$-minimal algebra. 
+    Then all $(\delta, \theta)$-traces of $\mathbf{A}$ have the same type.
+\end{theorem}
+
+\begin{definition}
+    Let $\mathbf{A}$ be a finite $(\delta, \theta)$-minimal algebra. 
+    We say that $\mathbf{A}$ is of type $\mathbf{i}$ relative to $(\delta, \theta)$ if each $(\delta, \theta)$-trace of $\mathbf{A}$ is of type $\mathbf{i}$. 
+\end{definition}
+
+
+
+\begin{lemma}
+    Let $\mathbf{A}$ be a $(\delta, \theta)$-minimal algebra and $N$ be a $(\delta, \theta)$-trace. 
+    Then 
+    \begin{enumerate}
+        \item there is a surjective lattice homomorphism $[\delta, \theta] \to \Con((\mathbf{A}||N)/(\delta|N))$; 
+        \item if any two $(\delta, \theta)$-traces are polynomially isomorphic, then it is an isomorphism. 
+    \end{enumerate}
+    \begin{proof}
+        The first part immediately follows from Lemma \ref{lemma_relative}.
+        The second is very similar.
         Let $\delta \le \alpha < \beta \le \theta$. 
         Let $(x,y) \in \beta - \alpha$. 
         Then $(x,y) \in \theta - \delta$ and $P:=x/\theta$ is a $(\delta, \theta)$-trace. 
@@ -291,7 +374,9 @@ The following is an example of a sufficient condition that guarantees that the l
     Let $N,K$ be two $(\delta, \theta)$-traces. 
     Then $N$ and $K$ are polynomially isomorphic. 
     \begin{proof}
-        \textcolor{blue}{to complete}
+        Since $\delta \prec \theta$, $\delta \lor \theta_{\mathbf{A}}(N)=\theta$. 
+        Then there is $\phi \in \Pol_1(\mathbf{A})$ such that $\phi[N] \cap K \neq \varnothing$ and $\phi[N]^2 \nsubseteq \delta$.
+        This implies that $\phi \in \Sym(A)$, so that $\phi[N]=K$ and $N \sim K$.  
     \end{proof}
 \end{lemma}
 
@@ -308,13 +393,13 @@ The following is an example of a sufficient condition that guarantees that the l
 \end{definition}
 
 \begin{remark}
-    A finite algebra $\mathbf{A}$ is $(\delta, \theta)$-minimal iff $A \in \M_{\mathbf{A}}(\delta, \theta)$. 
-    If $\mathbf{A}$ is $(\delta, \theta)$-minimal, every $\psi \in \M_{\mathbf{A}}(\delta, \theta)$ such that $\psi(\delta) \nsubseteq \theta$ is bijective. 
-    Clearly $A \in \U_{\mathbf{A}}(\delta, \theta)$, as witnessed by $\epsilon(x)=x$. 
-    If there were $\psi \in \Pol_1(\mathbf{A})$ with $\psi(\delta) \nsubseteq \theta$ and $\psi[A] \subset A$ we would contradict $(\delta, \theta)$-minimality. 
-    Conversely, let $A \in \M_{\mathbf{A}}(\delta, \theta)$ and $\psi \in \Pol_1(\mathbf{A})$ with $\psi(\delta) \nsubseteq \theta$; 
+    A finite algebra $\mathbf{A}$ is $(\alpha, \beta)$-minimal iff $A \in \M_{\mathbf{A}}(\alpha, \beta)$. 
+    If $\mathbf{A}$ is $(\alpha, \beta)$-minimal, every $\psi \in \M_{\mathbf{A}}(\alpha, \beta)$ such that $\psi(\alpha) \nsubseteq \beta$ is bijective. 
+    Clearly $A \in \U_{\mathbf{A}}(\alpha, \beta)$, as witnessed by $\epsilon(x)=x$. 
+    If there were $\psi \in \Pol_1(\mathbf{A})$ with $\psi(\alpha) \nsubseteq \beta$ and $\psi[A] \subset A$ we would contradict $(\alpha, \beta)$-minimality. 
+    Conversely, let $A \in \M_{\mathbf{A}}(\alpha, \beta)$ and $\psi \in \Pol_1(\mathbf{A})$ with $\psi(\alpha) \nsubseteq \beta$; 
     we show that $\psi \in \Sym(A)$. 
-    But by definition of $\M_{\mathbf{A}}(\delta, \theta)$, there is no $\psi \in \Pol_1(\mathbf{A})$ with $\psi(\delta) \nsubseteq \theta$ and $\psi[A] \subset A$. 
+    But by definition of $\M_{\mathbf{A}}(\alpha, \beta)$, there is no $\psi \in \Pol_1(\mathbf{A})$ with $\psi(\alpha) \nsubseteq \beta$ and $\psi[A] \subset A$. 
 \end{remark}
 
 %\begin{lemma}
@@ -342,24 +427,20 @@ The following is an example of a sufficient condition that guarantees that the l
     The pair $(\alpha, \beta)$ is a pair of \textbf{tame} congruences if there is $V \in \M_{\mathbf{A}}(\alpha, \beta)$, $\epsilon \in \Id(\mathbf{A})$ such that $\epsilon[A]=V$ and 
     $(-|V): [\alpha, \beta] \to [\alpha|V, \beta|V]$ is $0,1$-separating
     
-    A $(\land, \lor)$-homomorphism $\alpha: \mathbf{L} \to \mathbf{N}$ is $0,1$-\textbf{separating} if $\alpha^{-1}[\{\alpha(i)\}]=i$ for $i=0,1$. 
+    A lattice homomorphism $\alpha: \mathbf{L} \to \mathbf{N}$ is $0,1$-\textbf{separating} if $\alpha^{-1}[\{\alpha(i)\}]=i$ for $i=0,1$. 
 \end{definition}
 
 \begin{theorem}
     Let $(\alpha, \beta)$ be a tame pair of congruences of a finite algebra $\mathbf{A}$.
     For every $U \in \M_{\mathbf{A}}(\alpha, \beta)$, 
     \begin{enumerate} 
-        \item $\mathbf{A}||U$ is $(\alpha|U, \beta|U)$-minimal;
         \item there  is $\epsilon \in \Id(\mathbf{A})$ such that $\epsilon[A]=U$; 
-        \item $(-|U): [\delta, \theta] \to \Con(\mathbf{A}||U)$ is a surjective lattice homomorphism which is $0,1$-separating.
+        \item $(-|U): [\alpha, \beta] \to \Con(\mathbf{A}||U)$ is a surjective lattice homomorphism which is $0,1$-separating;
+        \item $\mathbf{A}||U$ is $(\alpha|U, \beta|U)$-minimal. 
+        \item Moreover, any two $(\alpha, \beta)$-minimal sets are polynomially isomorphic. 
     \end{enumerate}
-    Moreover, any two $(\alpha, \beta)$-minimal sets are polynomially isomorphic. 
     \begin{proof}
-        The first item does not depend on $(\alpha, \beta)$ being tame. 
-        Let $\phi \in \Pol_1(\mathbf{A})$ with $\phi[U] \subseteq U$ and $\phi(\beta) \nsubseteq \alpha$. 
-        Then $\phi[U]=U$ by $(\alpha, \beta)$-minimality, so that $\phi \in \Sym(A)$. 
-
-        As to the second: since $(\alpha, \beta)$ is tame, there is $V_0 \in \M_\mathbf{A}(\alpha,\beta)$ and $\epsilon_0 \in \Id(\mathbf{A})$ such that $V_0 = \epsilon_0[A]$ and $(-|V_0)$ is $0,1$-separating. 
+        $(1)$ Since $(\alpha, \beta)$ is tame, there is $V_0 \in \M_\mathbf{A}(\alpha,\beta)$ and $\epsilon_0 \in \Id(\mathbf{A})$ such that $V_0 = \epsilon_0[A]$ and $(-|V_0)$ is $0,1$-separating. 
         \begin{claim}
             \label{lemma_pol_claim1}
             If $(x,y) \in \beta - \alpha$, there is $\phi \in \Pol_1(\mathbf{A})$ with $\phi[A]=V_0$ and such that $(\phi(x), \phi(y)) \in \beta|V_0 - \alpha|V_0$. 
@@ -388,8 +469,8 @@ The following is an example of a sufficient condition that guarantees that the l
                 \alpha \cup \{(\psi(x), \psi(y)) : (x,y) \in \beta|V_0, \psi \in \Pol_1(\mathbf{A})\} \text{.}
             \end{equation*}
             \begin{proof}
-                The transitive closure of $\alpha \cup \{(\psi(x), \psi(y)) : (x,y) \in \beta|V_0, \psi \in \Pol_1(\mathbf{A})\}$ is $\alpha \lor \theta(\beta|V_0)$. 
-                But $\alpha \lor \theta(\beta|V_0) \in [\alpha, \beta]$, and therefore, since $(-|V_0)$ is $1$-seprating, $\beta=\alpha \lor \theta(\beta|V_0)$. 
+                The transitive closure of $\alpha \cup \{(\psi(x), \psi(y)) : (x,y) \in \beta|V_0, \psi \in \Pol_1(\mathbf{A})\}$ is $\alpha \lor \theta_\mathbf{A}(\beta|V_0)$. 
+                But $\alpha \lor \theta_\mathbf{A}(\beta|V_0) \in [\alpha, \beta]$, and therefore, since $(-|V_0)$ is $1$-separating, $\beta=\alpha \lor \theta_\mathbf{A}(\beta|V_0)$. 
             \end{proof}
         \end{claim}
         Assume that $U \in \M_{\mathbf{A}}(\alpha, \beta)$. 
@@ -411,14 +492,23 @@ The following is an example of a sufficient condition that guarantees that the l
         We have: $\epsilon[A] = (\mu_1 \nu)^k[A]=(\mu_1 \nu)^{k-1}[U]=U$ and, consequently, for all $a \in A$, $\epsilon^2(a)=\epsilon(a)$ since $\epsilon(a) \in U$. 
         Therefore $\epsilon \in \Id(\mathbf{A})$. 
 
-        We prove the third statement. 
-        Clearly, the map is well defined and preserves meets. 
-        For $\theta \in [\alpha|U, \beta|U]$, 
-        \textcolor{blue}{to complete} 
+        (2) Clearly, the map is well defined and preserves meets. 
+        For $\theta \in [\alpha|U, \beta|U]$, let 
+        \begin{equation*}
+            \hat{\theta}=\{(x,y) \in \beta : (\epsilon \phi(x), \epsilon \phi(y)) \in \theta \text{ for all } \phi \in \Pol_1(\mathbf{A})\}
+        \end{equation*}
+        The relation $\hat{\theta}$ is an equivalence relation.
+        If $(x,y) \in \hat{\theta}$ and $\psi \in \Pol_1(\mathbf{A})$, then $(\psi(x),\psi(y)) \in \hat{\theta}$ so that $\hat{\theta} \in [\alpha, \beta]$. 
+        \textcolor{red}{missing}
 
-        Finally, in the above notation, let $\phi:=\nu$, $\psi:=(\mu_1 \nu)^{k-1} \mu_1$. 
+        (4) In the above notation, let $\phi:=\nu$, $\psi:=(\mu_1 \nu)^{k-1} \mu_1$. 
         Then $\phi[U] = V_0, \psi[V_0]=U$ and $\psi \phi | U = 1_U, \phi \psi | V_0 = 1_{V_0}$. 
         Then fact that any $(\alpha, \beta)$-minimal set is polynomially isomorphic to $V_0$ implies that any two $(\alpha, \beta)$-minimal sets are polynomially isomorphic. 
+
+        (3) Let $\phi \in \Pol_1(\mathbf{A}||U)=\{\psi|U : \psi \in \Pol_1(\mathbf{A}), \psi[U] \subseteq U\}$. 
+        We need to show that if $\phi(\beta | U) \nsubseteq \alpha|U$, then $\phi \in \Sym(U)$. 
+        If $\phi(\beta | U) \nsubseteq \alpha|U$, then in particular $\psi(\beta) \nsubseteq \alpha$, so that, by $(\alpha,\beta)$-minimality, $U \subseteq \psi[A]$. 
+        \textcolor{red}{missing}
     \end{proof}
 \end{theorem}
 
@@ -610,8 +700,8 @@ The following is an example of a sufficient condition that guarantees that the l
         \end{claim}
         Let $\mathbf{S} \in V(\mathbf{A}||N)$ be such that every term operation of $\mathbf{S}$ is constant or a projection. 
         Then there is a clone homomorphism $\Clo(\mathbf{A}||N) \to \Clo(\mathbf{S})$.
-        Since $\mathsf{W} \le V(\mathbf{A}||N)$ there is a clone homomorphism $\Clo(W) \to \Clo(\mathbf{A}||N)$. 
-        Thus we get a clone homomorphism $\Clo(W) \to \Clo(\mathbf{S})$. 
+        Since $\mathsf{W} \le V(\mathbf{A}||N)$ there is a clone homomorphism $\Clo(\mathsf{W}) \to \Clo(\mathbf{A}||N)$. 
+        Thus we get a clone homomorphism $\Clo(\mathsf{W}) \to \Clo(\mathbf{S})$. 
         But for every $f \in F$, $\mathsf{W}$ satisfies $f(x, \ldots, x) \equiv x$, hence the image of $f$ through this clone homomorphism cannot be but a projection. 
         This implies that $\mathsf{W} \le \mathsf{Set}$. 
     \end{proof}
@@ -631,15 +721,16 @@ The following is an example of a sufficient condition that guarantees that the l
     Let $\mathbf{A}$ be a finite idempotent algebra. 
     There is $\mathbf{B} \in HS(\mathbf{A})$ such that $\Clo(\mathbf{B}) \simeq \mathbf{N}$ iff $\mathbf{1} \in \typ\{HS(\mathbf{A})\}$. 
     \begin{proof}
-        If $\mathbf{1} \in \typ\{HS(\mathbf{A})\}$, then $\mathbf{1} \in \typ\{HSP(\mathbf{A})\}$. 
-        Since $\mathbf{A}$ is finite, then, by Lemma \ref{loc_fin} $HSP(\mathbf{A})$ is locally finite, 
-        and therefore, by Theorem \ref{omitting_typ1}, for every idempotent variety $\mathsf{W}$, either $\mathsf{W} \nleq HSP(\mathbf{A})$ or $\mathsf{W} \le \mathsf{Set}$. 
-        In particular, since $\mathbf{A}$ is idempotent, $HSP(\mathbf{A}) \le \mathsf{Set}$. 
+        If $\mathbf{1} \in \typ\{HS(\mathbf{A})\}$, then $\mathbf{1} \in \typ\{V(\mathbf{A})\}$. 
+        Since $\mathbf{A}$ is finite, then, by Lemma \ref{loc_fin} $V(\mathbf{A})$ is locally finite, 
+        and therefore, by Theorem \ref{omitting_typ1}, for every idempotent variety $\mathsf{W}$, either $\mathsf{W} \nleq V(\mathbf{A})$ or $\mathsf{W} \le \mathsf{Set}$. 
+        In particular, since $\mathbf{A}$ is idempotent, $V(\mathbf{A}) \le \mathsf{Set}$. 
         This means that there is a clone homomorphism $\Clo(\mathbf{A}) \to \mathbf{N}$. 
-        Equivalently, every term operation of $\mathbf{A}$ is a projection. 
-        Hence, $\Clo(\mathbf{A}) \simeq \mathbf{N}$. 
+        Therefore, there is $\mathbf{S} \in \mathsf{Set}$ such that $\mathbf{S} \in V(\mathbf{A})$. 
+        %Without loss of generality, we can assume that $\mathbf{S}$ is finite. 
 
-        %Conversely, let $\mathbf{B} \in HS(\mathbf{A})$ such that $\Clo(\mathbf{B}) \simeq \mathbf{N}$; 
+        Conversely, let $\mathbf{B} \in HS(\mathbf{A})$ such that $\Clo(\mathbf{B}) \simeq \mathbf{N}$; 
+        this means that $\mathbf{B} \in \mathsf{Set}$ and therefore $\mathbf{B}$ is minimal of type $\mathbf{1}$. 
         %this means that $\mathbf{B}$ is term equivalent to a set. 
         %Hence $\mathbf{B}$ is polynomially equivalent to a set on which the trivial group acts. 
         %Then $\mathbf{1} \in \typ\{\mathbf{B}\}$, and therefore $\mathbf{1} \in \typ\{HS(\mathbf{A})\}$. 
