@@ -6,6 +6,7 @@
 \usepackage{tikz-cd}
 \usepackage{appendix}
 \usepackage{comment}
+\usepackage{mathtools}
 
 
 \hypersetup{
@@ -508,7 +509,9 @@ The following is an example of a sufficient condition that guarantees that the l
         (3) Let $\phi \in \Pol_1(\mathbf{A}||U)=\{\psi|U : \psi \in \Pol_1(\mathbf{A}), \psi[U] \subseteq U\}$. 
         We need to show that if $\phi(\beta | U) \nsubseteq \alpha|U$, then $\phi \in \Sym(U)$. 
         If $\phi(\beta | U) \nsubseteq \alpha|U$, then in particular $\psi(\beta) \nsubseteq \alpha$, so that, by $(\alpha,\beta)$-minimality, $U \subseteq \psi[A]$. 
-        \textcolor{red}{missing}
+        Let $\epsilon \in \Id(\mathbf{A})$ such that $\epsilon[A]=U$
+        Now, $\phi(\beta | U) \nsubseteq \alpha|U$ is equivalent $\psi \epsilon (\beta) \nsubseteq \alpha$, and $\psi \epsilon[A] \subseteq U$. 
+        Then by $(\alpha, \beta)$-minimality, $U =\psi \epsilon[A] = \psi[U]$.  
     \end{proof}
 \end{theorem}
 
@@ -547,14 +550,45 @@ The following is an example of a sufficient condition that guarantees that the l
         The algebra $\mathbf{A}||U$ is minimal relative to $(\alpha|U, \beta|U)$. 
         By Lemma \ref{lemma_ex} $\mathbf{A}||N = (\mathbf{A}||U)||N$ and consequently $(\mathbf{A}||N)/(\alpha|N) = ((\mathbf{A}||U)||N)/((\alpha|U)|N)$. 
         The type of $\mathbf{A}||U$ relative to $(\alpha|U, \beta|U)$ is, by definition, the type of the minimal algebra $\mathbf{M}:= ((\mathbf{A}||U)||N)/((\alpha|U)|N)$; 
-        but $M$ is the only $(\Delta_M, \nabla_M)$-trace of $\mathbf{M}$, hence this is $\typ(\mathbf{M})$. 
-
+        but $M$ is the only $(\Delta_M, \nabla_M)$-trace of $\mathbf{M}$, hence this is $\typ(\mathbf{M})$.
     \end{proof}
 \end{lemma}
 
+\section{Congruence Lattice Conditions for Omitting Type One}
+
+\begin{figure}
+    \centering
+    \begin{tikzpicture}
+    \label{D1}
+    \draw[black, thick] (0,0) -- (0,-2);
+    \draw[black, thick] (0,0) -- (-1,1);
+    \draw[black, thick] (0,0) -- (1,1);
+    \draw[black, thick] (0,-2) -- (-2,0);
+    \draw[black, thick] (0,-2) -- (2,0);
+    \draw[black, thick] (-2,0) -- (-1,1);
+    \draw[black, thick] (-1,1) -- (0,2);
+    \draw[black, thick] (0,2) -- (1,1);
+    \draw[black, thick] (1,1) -- (2,0);
+    \end{tikzpicture}
+    \caption{The lattice $\mathbf{D}_1$.}
+    \end{figure}
+
+\begin{definition}
+    Let $K$ be a class of algebras.
+    We define $\Con(K):=\{\Con(\mathbf{A}) : \mathbf{A} \in K\}$. 
+\end{definition}
+
+\begin{theorem}
+    Let $\mathsf{V}$ be a locally finite variety.
+    The following are equivalent: 
+    \begin{enumerate}
+        \item $\mathbf{1} \notin \typ\{\mathsf{V}\}$; 
+        \item $\mathbf{D}_1 \notin IS(\Con(\mathsf{V}))$. 
+    \end{enumerate}
+\end{theorem}
 
 
-\section{Omitting Types}
+\section{Syntactic Conditions for Omitting Type One}
 
 \begin{definition}
     Let $\mathsf{V}$ be a variety. 
@@ -570,7 +604,8 @@ The following is an example of a sufficient condition that guarantees that the l
     \begin{enumerate}
     \item \textbf{locally finite} if all its finitely generated algebras are finite; 
     \item \textbf{finitely presented} if $\mathsf{V}$ has a finite set of function symbols and $\mathsf{V}= \Alg(\Sigma)$ for a finite set of equations $\Sigma$; 
-    \item \textbf{finitely generated} if $\mathsf{V}=V(\mathbf{A}_1, \ldots, \mathbf{A}_n)$ for $\mathbf{A}_1, \ldots, \mathbf{A}_n$ finite similar algebras. 
+    \item \textbf{finitely generated} if $\mathsf{V}=V(\mathbf{A}_1, \ldots, \mathbf{A}_n)$ for $\mathbf{A}_1, \ldots, \mathbf{A}_n$ finite similar algebras; 
+    \item \textbf{linear} if there is a set of equations defining $\mathsf{V}$ containing at most one function symbol per side. 
     \end{enumerate}
 \end{definition}
 
@@ -624,7 +659,7 @@ The following is an example of a sufficient condition that guarantees that the l
     Let $\mathsf{V}$ be a variety of algebras over $F$, defined by the equations 
     \begin{equation}
         \label{remark_clone}
-        s_1 \equiv t_1,\ldots, s_k \equiv t_k \text{.}
+        s_1 \equiv t_1,\ldots, s_k \equiv t_k \tag{$\star$}\text{.}
     \end{equation} 
     Assume that for each $f \in F_n$ there is $t \in \Clo_n(\mathsf{W})$ such that the interpetation of the $t$'s satisfy the equations \eqref{remark_clone}. 
     Then the assignment $f \mapsto t$ extends to a clone homomorphism $\Clo(\mathsf{V}) \to \Clo(\mathsf{W})$. 
@@ -632,12 +667,44 @@ The following is an example of a sufficient condition that guarantees that the l
 \end{remark}
 
 \begin{lemma}
+    \label{trivial_pol}
+    Let $\mathbf{M}$ be finite minimal algebra of type $\mathbf{1}$. 
+    Let $\mathbf{A}=(M, \Pol(\mathbf{M}))$.
+    Then $V(\mathbf{A})$ contains a finite algebra $\mathbf{S}$ all of whose polynomials are constant or projections. 
+    \begin{proof}
+        Let $\mathbf{G}:=\Sym(M) \cap \Pol_1(\mathbf{M})$, subgroup of $\Sym(M)$. 
+        Let $u,v \in M$, $u \neq v$ and let 
+        \begin{equation*}
+            D:=\{(\sigma(u), \sigma(v)) : \sigma \in \mathbf{G}\} \cup \{(\sigma(v), \sigma(u)) : \sigma \in \mathbf{G}\}
+        \end{equation*}
+        Since $\mathbf{M}$ is minimal with $\typ(\mathbf{M})=\mathbf{1}$, every polynomial $\psi$ is constant or there is $i$, $\sigma \in \mathbf{G}$ such that 
+        \begin{equation*}
+            \psi(a_1, \ldots, a_n) = \sigma(a_i) \text{.}
+        \end{equation*}
+        This implies that $\mathbf{D}$ is a subalgebra of $\mathbf{A}^2$. 
+        Let 
+        \begin{equation*}
+            ((x_1, x_2), (y_1,y_2)) \in \theta \iff \sigma(x_i)=y_i \text{ for some } \sigma \in \mathbf{G}
+        \end{equation*}
+        We show that every term operation of $\mathbf{D}/\theta$ is either constant or a projection. 
+        Let $\psi \in \Pol_n(\mathbf{M})$ non constant and $(a_i,b_i) \in D$ for $i=1, \ldots, n$. 
+        Then there is $\tau \in \mathbf{G}$ such that 
+        \begin{align*}
+           \psi((a_1, b_1)/\theta, \ldots, (a_n, b_n)/\theta) & = \psi((a_1, b_1), \ldots, (a_n, b_n)) /\theta \\
+           & = (\psi(a_1, \ldots, a_n), \psi(b_1,\ldots, b_n)) / \theta \\
+           & = (\tau(a_i), \tau(b_i)) / \theta \\
+           & = (a_i, b_i) / \theta \text{.} \qedhere \\
+        \end{align*}
+    \end{proof}
+\end{lemma}
+
+\begin{lemma}
     Let $\mathsf{W}, \mathsf{V}$ be two varieties such that $\mathsf{W} \le \mathsf{V}$. 
     Assume that $\mathsf{W}$ is 
     \begin{itemize}
         \item idempotent; 
         \item finitely presented; 
-        \item the finite set of equations defining $\mathsf{W}$ contains at most one function symbol per side. 
+        \item linear. 
     \end{itemize}
     Let $\mathbf{A} \in \mathsf{V}$, $\epsilon \in \Id(\mathbf{A})$, $U:=\epsilon[A]$, $\beta \in \Con(\mathbf{A})$ and $N:=a/\beta \cap U$ for $a \in U$. 
     Then $\mathsf{W} \le V(\mathbf{A}||N)$. 
@@ -650,60 +717,59 @@ The following is an example of a sufficient condition that guarantees that the l
         where $f_i$ and $f_j$ are members of a finite set $F$ of function symbols. 
         Since $\mathsf{W} \le  \mathsf{V}$, there is an assignment $f \mapsto t$ extending to a clone homomorphism. 
         We need to find a clone homomorphism $\Clo(\mathsf{W}) \to \Clo(\mathbf{A}||N)$. 
-        Consider $f \mapsto \phi:=\epsilon t_i^\mathbf{A} |N$. 
-        Firstly, it is well defined: if $(a_1, \ldots, a_n) \in S$, $(\phi(a_1, \ldots, a_n), \phi(a, \ldots, a)) \in \beta$ but 
+        Consider $f \mapsto \phi:=\epsilon t^\mathbf{A} |N$. 
+        Firstly, it is well defined: if $(a_1, \ldots, a_n) \in N$, $(\phi(a_1, \ldots, a_n), \phi(a, \ldots, a)) \in \beta$ but 
         \begin{equation*}
-            \phi(a, \ldots, a) = \epsilon t^\mathbf{A} (a, \ldots, a) = \epsilon(a) \in U
+            \phi(a, \ldots, a) = \epsilon t^\mathbf{A} (a, \ldots, a) = \epsilon(a)=a \in U
         \end{equation*}
-        so that $\phi(a_1, \ldots, a_n) \in S$ and therefore $\phi \in \Pol(\mathbf{A})|N$. 
-        Finally, using that $\mathsf{W} \le  \mathsf{V}$
+        so that $\phi(a_1, \ldots, a_n) \in N$ and therefore $\phi \in \Pol(\mathbf{A})|N$. 
+        Finally, using that $\mathsf{W} \le  \mathsf{V}$, for every $a_{i_1}, \ldots, a_{i_h},a_{j_1}, \ldots, a_{j_k} \in N$
         \begin{align*}
             \phi_i(a_{i_1}, \ldots, a_{i_h}) & = \epsilon t_i^\mathbf{A} (a_{i_1}, \ldots, a_{i_h}) \\
             & = \epsilon t_j^\mathbf{A} (a_{j_1}, \ldots, a_{j_k})\\
             & = \phi_j(a_{j_1}, \ldots, a_{j_k}) \text{.} \\
         \end{align*} 
-        If $\mathbf{1} \in \typ\{\mathsf{V}\}$. 
-        Then there are $\alpha \prec \beta \in \Con(\mathbf{A})$ such that $\typ(\alpha, \beta) =\mathbf{1}$. 
+        If $\mathbf{1} \in \typ\{\mathsf{V}\}$, 
+        then there is $\mathbf{A} \in \mathsf{V}$ and $\alpha \prec \beta \in \Con(\mathbf{A})$ such that $\typ(\alpha, \beta) =\mathbf{1}$. 
         Without loss of generality we can assume that $\alpha = \Delta_A$. 
         Let $N$ be a $(\Delta_A, \beta)$-trace$^{*}$.
         Then there are $\epsilon \in \Id(\mathbf{A})$, $U:=\epsilon[A]$ such that $N = a /\beta \cap U$ for some $a \in U$. 
         Thus $\mathsf{W} \le V(\mathbf{A}||N)$. 
-        \begin{claim}
-            Let $\mathbf{M}$ be finite minimal algebra of unary type. 
-            Let $\mathbf{A}=(M, \Pol(\mathbf{M}))$.
-            Then $V(\mathbf{A})$ contains a finite algebra $\mathbf{S}$ all of whose polynomials are constant or projections. 
-            \begin{proof}
-                Let $\mathbf{G}:=\Sym(M) \cap \Pol_1(\mathbf{M})$, subgroup of $\Sym(M)$. 
-                Let $u,v \in M$, $u \neq v$ and let 
-                \begin{equation*}
-                    D:=\{(\sigma(u), \sigma(v)) : \sigma \in \mathbf{G}\} \cup \{(\sigma(v), \sigma(u)) : \sigma \in \mathbf{G}\}
-                \end{equation*}
-                Since $\mathbf{M}$ is minimal with $\typ(\mathbf{M})=\mathbf{1}$, every polynomial $\psi$ is constant or there is $i$, $\sigma \in \mathbf{G}$ such that 
-                \begin{equation*}
-                    \psi(a_1, \ldots, a_n) = \sigma(a_i) \text{.}
-                \end{equation*}
-                This implies that $\mathbf{D}$ is a subalgebra of $\mathbf{A}^2$. 
-                Let 
-                \begin{equation*}
-                    ((x_1, x_2), (y_1,y_2)) \in \theta \iff \sigma(x_i)=y_i \text{ for some } \sigma \in \mathbf{G}
-                \end{equation*}
-                We show that every term operation of $\mathbf{D}/\theta$ is either constant or a projection. 
-                Let $\psi \in \Pol_n(\mathbf{M})$ non constant and $(a_i,b_i) \in D$ for $i=1, \ldots, n$. 
-                Then there is $\tau \in \mathbf{G}$ such that 
-                \begin{align*}
-                   \psi((a_1, b_1)/\theta, \ldots, (a_n, b_n)/\theta) & = \psi((a_1, b_1), \ldots, (a_n, b_n)) /\theta \\
-                   & = (\psi(a_1, \ldots, a_n), \psi(b_1,\ldots, b_n)) / \theta \\
-                   & = (\tau(a_i), \tau(b_i)) / \theta \\
-                   & = (a_i, b_i) / \theta \text{.} \qedhere \\
-                \end{align*}
-            \end{proof}
-        \end{claim}
-        Let $\mathbf{S} \in V(\mathbf{A}||N)$ be such that every term operation of $\mathbf{S}$ is constant or a projection. 
+        The algebra $\mathbf{A}||N$ is minimal of type $\typ(\Delta_A,\beta)=\mathbf{1}$. 
+        Hence by Lemma \ref{trivial_pol}
+        there is $\mathbf{S} \in V(\mathbf{A}||N)$ such that every term operation of $\mathbf{S}$ is constant or a projection. 
         Then there is a clone homomorphism $\Clo(\mathbf{A}||N) \to \Clo(\mathbf{S})$.
         Since $\mathsf{W} \le V(\mathbf{A}||N)$ there is a clone homomorphism $\Clo(\mathsf{W}) \to \Clo(\mathbf{A}||N)$. 
         Thus we get a clone homomorphism $\Clo(\mathsf{W}) \to \Clo(\mathbf{S})$. 
         But for every $f \in F$, $\mathsf{W}$ satisfies $f(x, \ldots, x) \equiv x$, hence the image of $f$ through this clone homomorphism cannot be but a projection. 
         This implies that $\mathsf{W} \le \mathsf{Set}$. 
+    \end{proof}
+\end{lemma}
+
+\begin{lemma}
+    Let $\mathsf{V}$ be an idempotent variety over the set of function symbols $F$. 
+    Then the following are equivalent: 
+    \begin{enumerate}
+        \item $\mathsf{V} \nleq \mathsf{Set}$; 
+        \item there is an idempotent, finitely presented, linear vareity $\mathsf{W}$ such that $\mathsf{W} \le \mathsf{V}$ but $\mathsf{W} \nleq \mathsf{Set}$; 
+        \item $F$ is nonempty and $\mathsf{V}$ satisfies the equations 
+        \begin{align}
+            \label{linear_eq}
+            f(x_{11}, \ldots, x_{1n}) & \equiv f(y_{11}, \ldots, y_{1n}) \notag\\
+            & \vdotswithin{\equiv} \tag{$\triangle$}  \\ 
+            f(x_{n1}, \ldots, x_{nn}) & \equiv f(y_{n1}, \ldots, y_{nn}) \notag
+        \end{align}
+        for some $n >0$ and $x_{ii} \neq y_{ii}$. 
+    \end{enumerate}
+    \begin{proof}
+        Firstly, we prove that $(3)$ implies $(2)$. 
+        Let $\mathsf{W}$ be the variety over $\{f\}$ defined by the equations \eqref{linear_eq}. 
+        Then $\mathsf{W}$ is idempotent, finitely presented and linear. 
+        Clearly, $\mathsf{W} \le \mathsf{V}$ but $\mathsf{W} \nleq \mathsf{Set}$. 
+
+        The implication ``$(2) \implies (1)$" is obvious. 
+
+        If $\mathsf{V} \nleq \mathsf{Set}$
     \end{proof}
 \end{lemma}
 
@@ -728,6 +794,7 @@ The following is an example of a sufficient condition that guarantees that the l
         This means that there is a clone homomorphism $\Clo(\mathbf{A}) \to \mathbf{N}$. 
         Therefore, there is $\mathbf{S} \in \mathsf{Set}$ such that $\mathbf{S} \in V(\mathbf{A})$. 
         %Without loss of generality, we can assume that $\mathbf{S}$ is finite. 
+        \textcolor{red}{missing}
 
         Conversely, let $\mathbf{B} \in HS(\mathbf{A})$ such that $\Clo(\mathbf{B}) \simeq \mathbf{N}$; 
         this means that $\mathbf{B} \in \mathsf{Set}$ and therefore $\mathbf{B}$ is minimal of type $\mathbf{1}$. 
@@ -737,11 +804,70 @@ The following is an example of a sufficient condition that guarantees that the l
     \end{proof}
 \end{corollary}
 
+\begin{definition}
+    Let $\mathbf{A}$ be an algebra and $\mathsf{V}$ be a variety. 
+    Let $t=t(x_1, \ldots, x_n)$ with $n >0$.
+    We say that $t$ is a
+    \begin{enumerate}
+        \item \textbf{Taylor} term 
+        \item \textbf{weak near-unanimity} term 
+    \end{enumerate}
+    for $\mathbf{A}$ (or $\mathsf{V}$) if $\mathbf{A}$ (or $\mathsf{V}$) satisfies 
+    \begin{enumerate}
+        \item $t(x_1, \ldots, x_n) \equiv t(y_1, \ldots, y_n)$ with $x_i, y_i \in \{x,y\}$ and $x_i \neq y_i$;
+        \item $t(y, x, \ldots, x) \equiv t(x,y,x,\ldots, x) \cdots \equiv t(x, \ldots, x,y)$
+    \end{enumerate}
+    respectively. 
+\end{definition}
+
+\begin{theorem}
+    Let $\mathsf{V}$ be a locally finite variety. The following are equivalent: 
+    \begin{enumerate}
+        \item $\mathbf{1} \notin \typ\{\mathsf{V}\}$; 
+        \item $\mathsf{V}$ has an $n$-ary Taylor idempotent term for some $n >1$. 
+    \end{enumerate}
+\end{theorem}
+
 \begin{theorem}
     [\cite{wnu}]
+    Let $\mathsf{V}$ be a locally finite variety. The following are equivalent: 
+    \begin{enumerate}
+        \item $\mathbf{1} \notin \typ\{\mathsf{V}\}$; 
+        \item $\mathsf{V}$ has an $n$-ary weak near-unanimity idempotent term for some $n >1$. 
+    \end{enumerate}
+\end{theorem}
+
+\begin{corollary}
     Let $\mathbf{A}$ be a finite idempotent algebra. 
     Then $\Clo(\mathbf{A})$ contains a weak near-unanimity operation iff $\mathbf{1} \notin \typ\{HS(\mathbf{A})\}$. 
+\end{corollary}
+
+\begin{theorem}
+    [\cite{siggers}]
+    Let $\mathsf{V}$ be a locally finite variety.
+    The following are equivalent: 
+    \begin{enumerate}
+        \item $\mathbf{1} \notin \typ\{\mathsf{V}\}$; 
+        \item $\mathsf{V}$ has an idempotent $6$-ary term $t$ such that $\mathsf{V}$ satisfies 
+    \begin{equation*}
+        t(x,x,x,x,y,y) \equiv t(x,y,x,y,x,x) \text{, } t(y,y,x,x,x,x) \equiv t(x,x,y,x,y,x)
+    \end{equation*}
+    \end{enumerate}
 \end{theorem}
+
+
+\begin{center}
+\begin{tikzpicture}
+    %\filldraw[black] (0,0) circle (2pt)
+    %\filldraw[black] (-1,1) circle (2pt);
+    %\filldraw[black] (0,-2) circle (2pt);
+    %\filldraw[black] (1,1) circle (2pt);
+    %\filldraw[black] (2,0) circle (2pt);
+    %\filldraw[black] (0,2) circle (2pt);
+    %\filldraw[black] (0,-2) circle (2pt);
+\end{tikzpicture}
+\end{center} 
+
 
 \begin{thebibliography}{9}
     \bibitem{finite}
@@ -752,5 +878,7 @@ The following is an example of a sufficient condition that guarantees that the l
     P\'alfy, P. P. (1984). Unary polynomials in algebras I. \emph{Algebra Universalis} 18, 262-273.
     %\bibitem{classification}
     %Szendrei, Á. (1990). Simple surjective algebras having no proper subalgebras. \emph{Journal of the Australian Mathematical Society}, 48(3), 434-454. 
+    \bibitem{siggers}
+    Siggers, M. H. (2010). A strong Mal'cev condition for locally finite varieties omitting the unary type. \emph{Algebra Universalis} 64, 15-20.
  \end{thebibliography}
 \end{document}
