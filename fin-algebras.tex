@@ -53,6 +53,8 @@
 \DeclareMathOperator{\U}{U}
 \DeclareMathOperator{\M}{M}
 \DeclareMathOperator{\fin}{fin}
+\DeclareMathOperator{\SD}{SD}
+\DeclareMathOperator{\Sn}{Sn}
 
 \begin{document}
 \title{Minimal Algebras}
@@ -555,11 +557,23 @@ The following is an example of a sufficient condition that guarantees that the l
 \end{lemma}
 
 \section{Congruence Lattice Conditions for Omitting Type One}
+\begin{definition}
+    A lattice $\mathbf{L}$ is \textbf{meet semi-distributive} if it satisfies 
+    \begin{equation}
+        \label{meet_semi_d}
+        a \land b = a \land c \implies a \land b = a \land (b \lor c) 
+        \tag{$\SD(\land)$}
+    \end{equation}
+    for all $a,b,c \in L$. 
+    A lattice $\mathbf{L}$ is \textbf{join semi-distributive} if it satisfies $\SD(\lor)$. 
+    %We denote by $\mathsf{SD}(\land)$ 
+\end{definition}
 
+The smallest lattice satisfying $\SD(\lor)$ but not $\SD(\land)$ is called $\mathbf{D}_1$ and it is depicted in Figure \ref{di_one}.  
 \begin{figure}
     \centering
     \begin{tikzpicture}
-    \label{D1}
+    \label{di_one}
     \draw[black, thick] (0,0) -- (0,-2);
     \draw[black, thick] (0,0) -- (-1,1);
     \draw[black, thick] (0,0) -- (1,1);
@@ -571,7 +585,66 @@ The following is an example of a sufficient condition that guarantees that the l
     \draw[black, thick] (1,1) -- (2,0);
     \end{tikzpicture}
     \caption{The lattice $\mathbf{D}_1$.}
+\end{figure}
+
+\begin{lemma}
+    Let $\mathbf{A}$ be a finite algebra. 
+    Suppose that there are $\delta_1, \delta_2, \delta_3 \in \Con(\mathbf{A})$ such that $\Con(\mathbf{A})$ contains an isomorphic copy of $\mathbf{D}_1$, 
+    like the fugure below. 
+    If $0_{\mathbf{D}_1} \prec \alpha \le \delta_2$, then $\typ(0_{\mathbf{D}_1}, \alpha) = \mathbf{1}$. 
+    \begin{figure}
+        \centering
+        \begin{tikzpicture}
+        %\label{di_one}
+        \draw[black, thick] (0,0) -- (0,-2);
+        \draw[black, thick] (0,0) -- (-1,1);
+        \draw[black, thick] (0,0) -- (1,1);
+        \draw[black, thick] (0,-2) -- (-2,0);
+        \draw[black, thick] (0,-2) -- (2,0);
+        \draw[black, thick] (-2,0) -- (-1,1);
+        \draw[black, thick] (-1,1) -- (0,2);
+        \draw[black, thick] (0,2) -- (1,1);
+        \draw[black, thick] (1,1) -- (2,0);
+        \filldraw[black] (0,0) circle (2pt) node[anchor=west]{$\delta_2$};
+        \filldraw[black] (-2,0) circle (2pt) node[anchor=east]{$\delta_1$};
+        \filldraw[black] (2,0) circle (2pt) node[anchor=west]{$\delta_3$};
+        \end{tikzpicture}
+        %\caption{The lattice $\mathbf{D}_1$.}
     \end{figure}
+\end{lemma}
+
+\begin{definition}
+    Let $\mathbf{A}$ be a finite algebra. 
+    A $1$-\textbf{snag} is a pair $(a,b)$ of distinct elements of $A$ such that for some $\phi \in \Pol_2(\mathbf{A})$ 
+    \begin{equation*}
+        \phi(a,b)=\phi(b,a)=a \quad \phi(b,b)=b \text{.}
+    \end{equation*}
+    A $2$-\textbf{snag} is a pair $(a,b)$ of distinct elements of $A$ such that for some $\phi \in \Pol_2(\mathbf{A})$ 
+    \begin{equation*}
+        \phi(a,b)=\phi(b,a)=\phi(a,a)=a \quad \phi(b,b)=b \text{.}
+    \end{equation*}
+    We denote by $\Sn_1(\mathbf{A})$ and $\Sn_2(\mathbf{A})$ the set of $1$-snags and $2$-snags, respectively. 
+\end{definition}
+
+\begin{remark}
+    If $(a,b)$ is a $2$-snag as witnessed by $\phi$, then $\{a,b\}$ is closed under $\phi$ and it is a semilattice. 
+\end{remark}
+
+\begin{definition}
+    Let $\mathbf{A}$ be a finite algebra. 
+    For $\gamma, \delta \in \Con(\mathbf{A})$ we let 
+    \begin{align*}
+        \gamma \approx \delta & \iff \gamma \cap \Sn_1(\mathbf{A}) = \delta \cap \Sn_1(\mathbf{A})\\
+        \gamma \sim \delta & \iff \gamma \cap \Sn_2(\mathbf{A}) = \delta \cap \Sn_2(\mathbf{A})\\
+    \end{align*}
+\end{definition}
+
+\begin{theorem}
+    \label{lemma_msd}
+    Let $\mathbf{A}$ be a finite algebra. 
+    The relations $\sim$ and $\approx$ are congruences of $\mathbf{L}:=\Con(\mathbf{A})$. 
+    The quotient lattice $\mathbf{L}/\sim$ is meet semi-distributive. 
+\end{theorem}
 
 \begin{definition}
     Let $K$ be a class of algebras.
@@ -579,11 +652,20 @@ The following is an example of a sufficient condition that guarantees that the l
 \end{definition}
 
 \begin{theorem}
+    \label{theorem_msd}
     Let $\mathsf{V}$ be a locally finite variety.
     The following are equivalent: 
     \begin{enumerate}
         \item $\mathbf{1} \notin \typ\{\mathsf{V}\}$; 
-        \item $\mathbf{D}_1 \notin IS(\Con(\mathsf{V}))$. 
+        \item $\mathbf{D}_1 \notin IS(\Con(\mathsf{V}))$;
+        \item for every $\mathbf{A} \in \mathsf{V}$ there is a congruence $\theta$ of $\mathbf{L}:=\Con(\mathbf{A})$ such that 
+        $\mathbf{L}/\theta$ is meet semi-distributive and for all $a \in L$, $a / \theta$ is modular; 
+        \item for every $\mathbf{A} \in \mathsf{V}$, if $\alpha, \beta \in \Con(\mathbf{A})$ are such that $\alpha \sim \beta$, then $\alpha \circ \beta = \beta \circ \alpha$; 
+        \item there is an idempotent term $t$ such that for every $\mathbf{A} \in \mathsf{V}$, if $\Delta_A \sim \theta \in \Con(\mathbf{A})$, then
+        \begin{equation*}
+            t^\mathbf{A}(a,b,b)=a \quad t^{\mathbf{A}}(a,a,b)=b 
+        \end{equation*}
+        for all $(a,b) \in \theta$, i.e. $t$ is a Mal'cev term on the $\theta$-equivalence classes. 
     \end{enumerate}
 \end{theorem}
 
@@ -699,6 +781,7 @@ The following is an example of a sufficient condition that guarantees that the l
 \end{lemma}
 
 \begin{lemma}
+    \label{lemma_type1}
     Let $\mathsf{W}, \mathsf{V}$ be two varieties such that $\mathsf{W} \le \mathsf{V}$. 
     Assume that $\mathsf{W}$ is 
     \begin{itemize}
@@ -747,6 +830,7 @@ The following is an example of a sufficient condition that guarantees that the l
 \end{lemma}
 
 \begin{lemma}
+    \label{lemma_linear}
     Let $\mathsf{V}$ be an idempotent variety over the set of function symbols $F$. 
     Then the following are equivalent: 
     \begin{enumerate}
@@ -780,7 +864,60 @@ The following is an example of a sufficient condition that guarantees that the l
     \begin{enumerate}
         \item $\mathbf{1} \notin \typ\{\mathsf{V}\}$; 
         \item there is an idempotent variety $\mathsf{W}$ such that $\mathsf{W} \le \mathsf{V}$ and $\mathsf{W} \nleq \mathsf{Set}$. 
+        \item there is $m > 0$ such that for every $\mathbf{A} \in \mathsf{V}$, $\alpha, \beta, \gamma \in \Con(\mathbf{A})$ 
+        \begin{equation*}
+            \alpha \land (\beta \circ \gamma) \le \gamma_m \circ \beta_m 
+        \end{equation*}
+        where 
+        \begin{equation*}
+        \begin{cases}
+            (\beta_0, \gamma_0) = (\beta, \gamma) \\
+            (\beta_{n+1}, \gamma_{n+1})  = (\beta \lor (\alpha \land \gamma_n), \gamma \lor (\alpha \land \beta_n)) \\
+        \end{cases}
+    \end{equation*}
     \end{enumerate}
+    \begin{proof}
+        $(2) \implies (1)$: if there is $\mathsf{W}$ idempontent such that $\mathsf{W} \nleq \mathsf{Set}$, 
+        then there is $\mathsf{W}'$ idempotent, finitely presented, linear such that $\mathsf{W}' \le \mathsf{W}$, $\mathsf{W}' \nleq \mathsf{Set}$ by Lemma \ref{lemma_linear}. 
+        Assume that $\mathbf{1} \in \typ{\mathsf{V}}$, then by Lemma \ref{lemma_type1}, $\mathsf{W}' \le \mathsf{Set}$.
+        Absurd.  
+
+        $(1) \implies (3)$: consider the algebra $\mathbf{F}_{\mathsf{V}}(x,y,z) \in \mathsf{V}$. 
+        Let $\alpha:=\theta(x,z), \beta:=\theta(x,y), \gamma:=\theta(y,z)$ and $(\beta_n), (\gamma_n)$ as above. 
+        By induction, the two sequences $(\beta_n), (\gamma_n)$ are increasing. 
+        Since $\mathbf{F}_{\mathsf{V}}(x,y,z)$ is finite, there is $m > 0$ such that $\beta_m = \beta_{m+1}$, $\gamma_m = \gamma_{m+1}$. 
+        Then 
+        \begin{align*}
+            \alpha \land \gamma_m & \le \beta \lor (\alpha \land \gamma_m) = \beta_m \\
+            \alpha \land \beta_m & \le \beta \lor (\alpha \land \beta_m) = \gamma_m
+        \end{align*}
+        so that $\alpha \land \beta_m = \alpha \land \gamma_m$. 
+        By Lemma \ref{lemma_msd}, $\Con(\mathbf{F}_{\mathsf{V}}(x,y,x))/ \sim$ is meet semi-distributive, so that 
+        \begin{equation*}
+            \alpha \land \beta_m \sim \alpha \land (\beta_m \lor \gamma_m) \text{.}
+        \end{equation*}
+        \begin{claim}
+            $\gamma_m \sim \beta_m$ 
+        \end{claim}
+        By Theorem \ref{theorem_msd}, this implies that $\gamma_m \circ \beta_m = \beta_m \circ \gamma_m$. 
+        Since $(x,z) \in \beta \circ \gamma \le \beta_m \circ \gamma_m$, $(x,z) \in \gamma_m \circ \beta_m$.
+        Now, let $\mathbf{A} \in \mathsf{V}$. 
+        Let $\alpha, \beta, \gamma \in \Con(\mathbf{A})$ and $(a,c) \in \alpha \land (\beta \circ \gamma)$. 
+        Let $b \in A$ such that $(a,b) \in \beta, (b,c) \in \gamma$. 
+        Let $f: \mathbf{F}_{\mathsf{V}}(x,y,z) \to \mathbf{A}$ be the homomorphism
+        \begin{equation*}
+            x \mapsto a, y \mapsto b, z \mapsto c \text{.}
+        \end{equation*} 
+        Now, the function $\theta \mapsto f^{-1}(\theta)$ is an isomorphism of lattices 
+        \begin{equation*}
+            \Con(\mathbf{A}) \simeq [f^{-1}(\Delta_A), \nabla_A] \text{.}
+        \end{equation*}
+        Consequently, as $\theta(x,z) \subseteq f^{-1}(\alpha)$, $\theta(x,y) \subseteq f^{-1}(\beta)$, $\theta(y,z) \subseteq f^{-1}(\gamma)$, by induction  
+        $\theta(x,z)_m \subseteq f^{-1}(\alpha_m)$, $\theta(x,y)_m \subseteq f^{-1}(\beta_m)$, $\theta(y,z)_m \subseteq f^{-1}(\gamma_m)$.
+        Then $f(\theta(y,z)_m \circ \theta(x,y)_m) \subseteq \gamma_m \circ \beta_m$ and therefore $(a,c) \in \gamma_m \circ \beta_m$. 
+
+        $(3) \implies (2)$:
+    \end{proof}
 \end{theorem}
 
 \begin{corollary}
@@ -815,7 +952,7 @@ The following is an example of a sufficient condition that guarantees that the l
     for $\mathbf{A}$ (or $\mathsf{V}$) if $\mathbf{A}$ (or $\mathsf{V}$) satisfies 
     \begin{enumerate}
         \item $t(x_1, \ldots, x_n) \equiv t(y_1, \ldots, y_n)$ with $x_i, y_i \in \{x,y\}$ and $x_i \neq y_i$;
-        \item $t(y, x, \ldots, x) \equiv t(x,y,x,\ldots, x) \cdots \equiv t(x, \ldots, x,y)$
+        \item $t(y, x, \ldots, x) \equiv t(x,y,x,\ldots, x) \equiv \cdots \equiv t(x, \ldots, x,y)$
     \end{enumerate}
     respectively. 
 \end{definition}
