@@ -52,6 +52,7 @@
 \DeclareMathOperator{\Id}{E}
 \DeclareMathOperator{\U}{U}
 \DeclareMathOperator{\M}{M}
+\DeclareMathOperator{\Z}{Z}
 \DeclareMathOperator{\fin}{fin}
 \DeclareMathOperator{\SD}{SD}
 \DeclareMathOperator{\Sn}{Sn}
@@ -244,7 +245,7 @@ We shall see that, up to polynomial equivalence, there are no other finite minim
     Then 
     \begin{enumerate}
         \item $(-|N): [\Delta_A, \theta] \to \Con(\mathbf{A}||N)$ is a surjective lattice homomorphism; 
-        \item if any two $\theta$-traces are polynomially isomorphic, then it is an isomorphism. 
+        \item if any two $\theta$-traces are polynomially isomorphic, then $(-|N)$ is an isomorphism. 
     \end{enumerate}
     \begin{proof}
         Clearly, the map is well defined and preserves meets. 
@@ -293,8 +294,9 @@ We shall see that, up to polynomial equivalence, there are no other finite minim
         $\{(\psi(x), \psi(y)) : (x,y) \in N^2, \psi \in \Pol_1(\mathbf{A})\}$. 
         Then, as $K$ is a $\theta$-class, there is $\phi \in \Pol_1(\mathbf{A})$ such that $\phi[N] \cap K \neq \varnothing$ 
         and $\phi$ is not constant on $N$. 
-        This implies that $\phi \in \Sym(A)$, so that $\phi[N]=K$. 
-        Similarly, there is $\psi \in \Pol_1(\mathbf{A}) \cap \Sym(A)$ such that $\psi[N]=K$. 
+        This implies that $\phi \in \Sym(A)$ and $\phi[N] \subseteq K$. 
+        Similarly, there is $\psi \in \Pol_1(\mathbf{A}) \cap \Sym(A)$ such that $\psi[K]\subseteq N$. 
+        But then $\phi[N]=K$ and $\psi[K]=N$. 
         Now, $\psi \phi \in \Sym(A)$, hence $(\psi \phi)^k = 1_A$ for some $k > 0$. 
         The polynomials $\phi(\psi \phi)^{k-1}$ and $\psi$ witness that $N \sim K$.
     \end{proof}
@@ -313,9 +315,9 @@ We shall see that, up to polynomial equivalence, there are no other finite minim
 \begin{definition}
     %Let $(\alpha, \beta)$ be tame in a finite algebra $\mathbf{A}$. 
     Let $\mathbf{A}$ be a $(\delta, \theta)$-minimal algebra. 
-    An $(\alpha, \beta)$-\textbf{trace} of $\mathbf{A}$ is 
+    An $(\delta, \theta)$-\textbf{trace} of $\mathbf{A}$ is 
     %$N \subseteq A$ such that for some $U \in \M_{\mathbf{A}}(\alpha, \beta)$ and $x \in U$, $N\subseteq U$ and $N=x/(\beta|U) \neq x/(\alpha|U)$. 
-    a $\beta$-equivalence class which contains at least two $\alpha$-equivalence classes. 
+    a $\theta$-equivalence class which contains at least two $\delta$-equivalence classes. 
 \end{definition}
 
 \begin{lemma}
@@ -353,7 +355,7 @@ Therefore, with an abuse of language, we shall refer unambiguoulsy to the type o
     Then 
     \begin{enumerate}
         \item there is a surjective lattice homomorphism $[\delta, \theta] \to \Con((\mathbf{A}||N)/(\delta|N))$; 
-        \item if any two $(\delta, \theta)$-traces are polynomially isomorphic, then it is an isomorphism. 
+        \item if any two $(\delta, \theta)$-traces are polynomially isomorphic, then the above map is an isomorphism. 
     \end{enumerate}
     \begin{proof}
         The first part immediately follows from Lemma \ref{lemma_relative}.
@@ -386,23 +388,23 @@ The following is an example of a sufficient condition that guarantees that the l
 \section{Tame Congruences}
 
 \begin{definition}
-    Let $\mathbf{A}$ be a finite algebra and $\alpha, \beta \in \Con(\mathbf{A})$ with $\alpha < \beta$. 
+    Let $\mathbf{A}$ be a finite algebra and $\delta, \theta \in \Con(\mathbf{A})$ with $\delta < \theta$. 
     We denote by
     \begin{enumerate}
         \item $\Id(\mathbf{A})$ the set of $ \epsilon \in \Pol_1(\mathbf{A})$ such that $\epsilon^2 = \epsilon$; 
-        \item $\U_{\mathbf{A}}(\alpha, \beta)$ the set $\{\phi[A] : \phi \in \Pol_1(\mathbf{A}), \phi(\beta) \nsubseteq \alpha\}$; 
-        \item $\M_{\mathbf{A}}(\alpha, \beta)$ the set of minimal (with respect to the inclusion relation) elements of $\U_{\mathbf{A}}(\alpha, \beta)$. 
+        \item $\U_{\mathbf{A}}(\delta, \theta)$ the set $\{\phi[A] : \phi \in \Pol_1(\mathbf{A}), \phi(\theta) \nsubseteq \delta\}$; 
+        \item $\M_{\mathbf{A}}(\delta, \theta)$ the set of minimal (with respect to the inclusion relation) elements of $\U_{\mathbf{A}}(\delta, \theta)$. 
     \end{enumerate}
 \end{definition}
 
 \begin{remark}
-    A finite algebra $\mathbf{A}$ is $(\alpha, \beta)$-minimal iff $A \in \M_{\mathbf{A}}(\alpha, \beta)$. 
-    If $\mathbf{A}$ is $(\alpha, \beta)$-minimal, every $\psi \in \M_{\mathbf{A}}(\alpha, \beta)$ such that $\psi(\alpha) \nsubseteq \beta$ is bijective. 
-    Clearly $A \in \U_{\mathbf{A}}(\alpha, \beta)$, as witnessed by $\epsilon(x)=x$. 
-    If there were $\psi \in \Pol_1(\mathbf{A})$ with $\psi(\alpha) \nsubseteq \beta$ and $\psi[A] \subset A$ we would contradict $(\alpha, \beta)$-minimality. 
-    Conversely, let $A \in \M_{\mathbf{A}}(\alpha, \beta)$ and $\psi \in \Pol_1(\mathbf{A})$ with $\psi(\alpha) \nsubseteq \beta$; 
+    A finite algebra $\mathbf{A}$ is $(\delta, \theta)$-minimal iff $A \in \M_{\mathbf{A}}(\delta, \theta)$. 
+    If $\mathbf{A}$ is $(\delta, \theta)$-minimal, every $\psi \in \M_{\mathbf{A}}(\delta, \theta)$ such that $\psi(\delta) \nsubseteq \theta$ is bijective. 
+    Clearly $A \in \U_{\mathbf{A}}(\delta, \theta)$, as witnessed by $\epsilon(x)=x$. 
+    If there were $\psi \in \Pol_1(\mathbf{A})$ with $\psi(\delta) \nsubseteq \theta$ and $\psi[A] \subset A$ we would contradict $(\delta, \theta)$-minimality. 
+    Conversely, let $A \in \M_{\mathbf{A}}(\delta, \theta)$ and $\psi \in \Pol_1(\mathbf{A})$ with $\psi(\delta) \nsubseteq \theta$; 
     we show that $\psi \in \Sym(A)$. 
-    But by definition of $\M_{\mathbf{A}}(\alpha, \beta)$, there is no $\psi \in \Pol_1(\mathbf{A})$ with $\psi(\alpha) \nsubseteq \beta$ and $\psi[A] \subset A$. 
+    But by definition of $\M_{\mathbf{A}}(\delta, \theta)$, there is no $\psi \in \Pol_1(\mathbf{A})$ with $\psi(\delta) \nsubseteq \theta$ and $\psi[A] \subset A$. 
 \end{remark}
 
 %\begin{lemma}
@@ -426,24 +428,24 @@ The following is an example of a sufficient condition that guarantees that the l
 \end{lemma}
 
 \begin{definition}
-    Let $\mathbf{A}$ be a finite algebra and $\alpha, \beta \in \Con(\mathbf{A})$ with $\alpha < \beta$. 
-    The pair $(\alpha, \beta)$ is a pair of \textbf{tame} congruences if there is $V \in \M_{\mathbf{A}}(\alpha, \beta)$, $\epsilon \in \Id(\mathbf{A})$ such that $\epsilon[A]=V$ and 
-    $(-|V): [\alpha, \beta] \to [\alpha|V, \beta|V]$ is $0,1$-separating
+    Let $\mathbf{A}$ be a finite algebra and $\delta, \theta \in \Con(\mathbf{A})$ with $\delta < \theta$. 
+    The pair $(\delta, \theta)$ is a pair of \textbf{tame} congruences if there is $V \in \M_{\mathbf{A}}(\delta, \theta)$, $\epsilon \in \Id(\mathbf{A})$ such that $\epsilon[A]=V$ and 
+    $(-|V): [\delta, \theta] \to [\delta|V, \theta|V]$ is $0,1$-separating
     
-    A lattice homomorphism $\alpha: \mathbf{L} \to \mathbf{N}$ is $0,1$-\textbf{separating} if $\alpha^{-1}[\{\alpha(i)\}]=i$ for $i=0,1$. 
+    A lattice homomorphism $f: \mathbf{L} \to \mathbf{N}$ is $0,1$-\textbf{separating} if $f^{-1}[\{\delta(i)\}]=i$ for $i=0,1$. 
 \end{definition}
 
 \begin{theorem}
-    Let $(\alpha, \beta)$ be a tame pair of congruences of a finite algebra $\mathbf{A}$.
-    For every $U \in \M_{\mathbf{A}}(\alpha, \beta)$, 
+    Let $(\delta, \theta)$ be a tame pair of congruences of a finite algebra $\mathbf{A}$.
+    For every $U \in \M_{\mathbf{A}}(\delta, \theta)$, 
     \begin{enumerate} 
         \item there  is $\epsilon \in \Id(\mathbf{A})$ such that $\epsilon[A]=U$; 
-        \item $(-|U): [\alpha, \beta] \to \Con(\mathbf{A}||U)$ is a surjective lattice homomorphism which is $0,1$-separating;
-        \item $\mathbf{A}||U$ is $(\alpha|U, \beta|U)$-minimal. 
-        \item Moreover, any two $(\alpha, \beta)$-minimal sets are polynomially isomorphic. 
+        \item $(-|U): [\delta, \theta] \to \Con(\mathbf{A}||U)$ is a surjective lattice homomorphism which is $0,1$-separating;
+        \item $\mathbf{A}||U$ is $(\delta|U, \theta|U)$-minimal. 
+        \item Moreover, any two $(\delta, \theta)$-minimal sets are polynomially isomorphic. 
     \end{enumerate}
     \begin{proof}
-        $(1)$ Since $(\alpha, \beta)$ is tame, there is $V_0 \in \M_\mathbf{A}(\alpha,\beta)$ and $\epsilon_0 \in \Id(\mathbf{A})$ such that $V_0 = \epsilon_0[A]$ and $(-|V_0)$ is $0,1$-separating. 
+        $(1)$ Since $(\delta, \theta)$ is tame, there is $V_0 \in \M_\mathbf{A}(\delta,\theta)$ and $\epsilon_0 \in \Id(\mathbf{A})$ such that $V_0 = \epsilon_0[A]$ and $(-|V_0)$ is $0,1$-separating. 
         \begin{claim}
             \label{lemma_pol_claim1}
             If $(x,y) \in \beta - \alpha$, there is $\phi \in \Pol_1(\mathbf{A})$ with $\phi[A]=V_0$ and such that $(\phi(x), \phi(y)) \in \beta|V_0 - \alpha|V_0$. 
@@ -518,21 +520,21 @@ The following is an example of a sufficient condition that guarantees that the l
 \end{theorem}
 
 \begin{definition}
-    Let $(\alpha, \beta)$ be tame in a finite algebra $\mathbf{A}$. 
-    An $(\alpha, \beta)$-\textbf{trace$^*$} of $\mathbf{A}$ is 
-    $N \subseteq A$ such that for some $U \in \M_{\mathbf{A}}(\alpha, \beta)$ and $x \in U$, $N\subseteq U$ and $N=x/(\beta|U) \neq x/(\alpha|U)$. 
-    That is, $N$ is an $(\alpha|U, \beta|U)$-trace of the minimal algebra $\mathbf{A}||U$. 
+    Let $(\delta, \theta)$ be tame in a finite algebra $\mathbf{A}$. 
+    An $(\delta, \theta)$-\textbf{trace$^*$} of $\mathbf{A}$ is 
+    $N \subseteq A$ such that for some $U \in \M_{\mathbf{A}}(\delta, \theta)$ and $x \in U$, $N\subseteq U$ and $N=x/(\theta|U) \neq x/(\delta|U)$. 
+    That is, $N$ is an $(\delta|U, \theta|U)$-trace of the minimal algebra $\mathbf{A}||U$. 
 \end{definition}
 
 \begin{definition}
-    Let $(\alpha, \beta)$ be tame in a finite algebra $\mathbf{A}$.
-    Let $\delta, \theta \in \Con(\mathbf{A})$. 
+    Let $(\delta, \theta)$ be tame in a finite algebra $\mathbf{A}$ and $U \in M_{\mathbf{A}}$.
+    Let $\alpha, \theta \in \Con(\mathbf{A})$. 
     Let $K$ be a class of algebras. 
     We define 
     \begin{enumerate}
-        \item the \textbf{type} of $(\alpha, \beta)$, written $\typ(\alpha, \beta)$, to be the type of
-        $\mathbf{A}||U$ relative to $(\alpha|U, \beta|U)$;
-        \item $\typ\{\delta, \theta\} :=\{ \typ(\alpha, \beta) : \delta \le \alpha \prec \beta \le \beta\}$;
+        \item the \textbf{type} of $(\delta, \theta)$, written $\typ(\delta, \theta)$, to be the type of
+        $\mathbf{A}||U$ relative to $(\delta|U, \theta|U)$;
+        \item $\typ\{\alpha, \beta\} :=\{ \typ(\delta, \theta) : \alpha \le \delta \prec \theta \le \beta\}$;
         \item $\typ\{\mathbf{A}\}: =\typ\{\Delta_A, \nabla_A\}$; 
         \item $\typ\{K\}:=\cup\{\typ\{\mathbf{A}\} : \mathbf{A} \in K_{\fin}\}$. 
     \end{enumerate}
@@ -545,16 +547,103 @@ The following is an example of a sufficient condition that guarantees that the l
 \end{remark}
 
 \begin{lemma}
-    Let $(\alpha, \beta)$ be tame in a finite algebra $\mathbf{A}$.
-    For every $(\alpha, \beta)$-trace$^*$ of $\mathbf{A}$, the algebra $(\mathbf{A}||N)/(\alpha|N)$ is minimal and $\typ(\alpha, \beta) = \typ((\mathbf{A}||N)/(\alpha|N))$. 
+    Let $(\delta, \theta)$ be tame in a finite algebra $\mathbf{A}$.
+    For every $(\delta, \theta)$-trace$^*$ of $\mathbf{A}$, the algebra $(\mathbf{A}||N)/(\delta|N)$ is minimal and $\typ(\delta, \theta) = \typ((\mathbf{A}||N)/(\delta|N))$. 
     \begin{proof}
-        Let $U$ be any $(\alpha, \beta)$-minimal set and $N$ be an $(\alpha|U, \beta|U)$-trace. 
-        The algebra $\mathbf{A}||U$ is minimal relative to $(\alpha|U, \beta|U)$. 
-        By Lemma \ref{lemma_ex} $\mathbf{A}||N = (\mathbf{A}||U)||N$ and consequently $(\mathbf{A}||N)/(\alpha|N) = ((\mathbf{A}||U)||N)/((\alpha|U)|N)$. 
-        The type of $\mathbf{A}||U$ relative to $(\alpha|U, \beta|U)$ is, by definition, the type of the minimal algebra $\mathbf{M}:= ((\mathbf{A}||U)||N)/((\alpha|U)|N)$; 
+        Let $U$ be any $(\delta, \theta)$-minimal set and $N$ be an $(\delta|U, \theta|U)$-trace. 
+        The algebra $\mathbf{A}||U$ is minimal relative to $(\delta|U, \theta|U)$. 
+        By Lemma \ref{lemma_ex} $\mathbf{A}||N = (\mathbf{A}||U)||N$ and consequently $(\mathbf{A}||N)/(\delta|N) = ((\mathbf{A}||U)||N)/((\delta|U)|N)$. 
+        The type of $\mathbf{A}||U$ relative to $(\delta|U, \theta|U)$ is, by definition, the type of the minimal algebra $\mathbf{M}:= ((\mathbf{A}||U)||N)/((\delta|U)|N)$; 
         but $M$ is the only $(\Delta_M, \nabla_M)$-trace of $\mathbf{M}$, hence this is $\typ(\mathbf{M})$.
     \end{proof}
 \end{lemma}
+
+\section{Type One and Solvability}
+
+\begin{definition}
+    Let $\mathbf{A}$ be a finite algebra and $\delta, \theta \in \Con(\mathbf{A})$ with $\delta < \theta$. 
+    We say that $(\delta, \theta)$ is 
+    \begin{enumerate}
+        \item \textbf{abelian} if for all $\phi \in \Pol_{n+1}(\mathbf{A})$, $(u,v), (a_1, b_1), \ldots, (a_n,b_n) \in \theta$ 
+        \begin{equation*}
+            \phi(u, a_1, \ldots, a_n) \delta \phi(u, b_1, \ldots, b_n) \iff \phi(v, a_1, \ldots, a_n) \delta \phi(v, b_1, \ldots, b_n)
+        \end{equation*}
+        \item \textbf{strongly abelian}\footnote{``Strongly abelian prime quotients do not occur 
+        in most `normal' algebras. For example, they do not occur in groups, rings, modules, or lattices. 
+        [\ldots] The concept is important in our theory, but primarily in the negative sense of a bad example we wish to exclude." \cite[p. 44]{finite}
+        } 
+        if for all $\phi \in \Pol_{n+1}(\mathbf{A})$, $(a_0,b_0) \in \theta$, $a_i \theta b_i \theta c_i$ 
+        \begin{equation*}
+            \phi(a_0, a_1, \ldots, a_n) \delta \phi(b_0, b_1, \ldots, b_n) \implies \phi(a_0, c_1, \ldots, c_n) \delta \phi(b_0, c_1, \ldots, c_n)
+        \end{equation*}
+        \item \textbf{(strongly) solvable} if there is a finite chain $\delta=\gamma_0 \le \cdots \le \gamma_{n+1}=\theta$ with $(\gamma_i, \gamma_{i+1})$ (strongly) abelian.  
+    \end{enumerate}
+\end{definition}
+
+\begin{remark}
+    When $(\Delta_A, \nabla_A)$ is abelian if for all $\phi \in \Pol_{n+1}(\mathbf{A})$, $u,v,a_i, b_i \in A$ 
+    \begin{equation}
+        \label{eq_abelian}
+        \phi(u, a_1, \ldots, a_n) = \phi(u, b_1, \ldots, b_n) \iff \phi(v, a_1, \ldots, a_n) = \phi(v, b_1, \ldots, b_n)
+    \end{equation}
+    Let the \textbf{center} $\Z(\mathbf{A})$ of $\mathbf{A}$ be the set of pairs $(u,v) \in A^2$ such that Equation \eqref{eq_abelian} holds. 
+    Then $\Z(\mathbf{A})$ is a congruence. 
+    Then we could say that $\mathbf{A}$ is abelian if $(\Delta_A, \nabla_A)$ is abelian, or equivalently, if $\Z(\mathbf{A})=\nabla_A$. 
+    By a classical result, $\mathbf{A}$ is abelian iff it is polynomially equivalent to a left $\mathbf{R}$-module, for some ring $\mathbf{R}$. 
+\end{remark}
+
+\begin{remark}
+    If $(\delta, \theta)$ is strongly abelian, then it is abelian. 
+\end{remark}
+
+\begin{theorem}
+    \label{one_iff_sa}
+    Let $\mathbf{A}$ be a finite algebra. 
+    A pair of tame congruences $(\delta, \theta)$ has type $\mathbf{1}$ iff it is strongly abelian. 
+\end{theorem}
+
+\begin{definition}
+    Let $\mathbf{A}$ be a finite algebra. 
+    A $1$-\textbf{snag} is a pair $(a,b)$ of distinct elements of $A$ such that for some $\phi \in \Pol_2(\mathbf{A})$ 
+    \begin{equation*}
+        \phi(a,b)=\phi(b,a)=a \quad \phi(b,b)=b \text{.}
+    \end{equation*}
+    A $2$-\textbf{snag} is a pair $(a,b)$ of distinct elements of $A$ such that for some $\phi \in \Pol_2(\mathbf{A})$ 
+    \begin{equation*}
+        \phi(a,b)=\phi(b,a)=\phi(a,a)=a \quad \phi(b,b)=b \text{.}
+    \end{equation*}
+    We denote by $\Sn_1(\mathbf{A})$ and $\Sn_2(\mathbf{A})$ the set of $1$-snags and $2$-snags, respectively. 
+\end{definition}
+
+
+\begin{remark}
+    If $(a,b)$ is a $2$-snag as witnessed by $\phi$, then $\{a,b\}$ is closed under $\phi$ and it is a semilattice. 
+\end{remark}
+
+\begin{lemma}
+    Let $\mathbf{A}$ be a finite algebra. 
+    The following are equivalent: 
+    \begin{comment}
+    \begin{enumerate}
+        \item $(\delta, \theta)$ is solvable; 
+        \item $\Sn_2(\mathbf{A}) \cap (\theta - \delta) = \emptyset$; 
+        \item for all $\delta \le \alpha \prec \beta \le \theta$, $(\alpha, \beta)$ is abelian; 
+        \item $\typ\{\delta, \theta\} \subseteq \{\mathbf{1}, \mathbf{2}\}$. 
+    \end{enumerate}
+\end{comment}
+    \begin{enumerate}
+        \item $(\delta, \theta)$ is strongly solvable; 
+        \item $\Sn_1(\mathbf{A}) \cap (\theta - \delta) = \varnothing$; 
+        \item for all $\delta \le \alpha \prec \beta \le \theta$, $(\alpha, \beta)$ is strongly abelian; 
+        \item $\typ\{\delta, \theta\} = \mathbf{1}$. 
+    \end{enumerate}
+    \begin{proof}
+        The equivalence `$(3) \implies (4)$' is the content of Theorem \ref{one_iff_sa}. 
+        
+        `$(1) \implies (2)$': if $(\delta, \theta)$ is strongly solvable, there is a chain 
+    \end{proof}
+\end{lemma}
+
 
 \section{Congruence Lattice Conditions for Omitting Type One}
 \begin{definition}
@@ -615,23 +704,6 @@ The smallest lattice satisfying $\SD(\lor)$ but not $\SD(\land)$ is called $\mat
 
 \begin{definition}
     Let $\mathbf{A}$ be a finite algebra. 
-    A $1$-\textbf{snag} is a pair $(a,b)$ of distinct elements of $A$ such that for some $\phi \in \Pol_2(\mathbf{A})$ 
-    \begin{equation*}
-        \phi(a,b)=\phi(b,a)=a \quad \phi(b,b)=b \text{.}
-    \end{equation*}
-    A $2$-\textbf{snag} is a pair $(a,b)$ of distinct elements of $A$ such that for some $\phi \in \Pol_2(\mathbf{A})$ 
-    \begin{equation*}
-        \phi(a,b)=\phi(b,a)=\phi(a,a)=a \quad \phi(b,b)=b \text{.}
-    \end{equation*}
-    We denote by $\Sn_1(\mathbf{A})$ and $\Sn_2(\mathbf{A})$ the set of $1$-snags and $2$-snags, respectively. 
-\end{definition}
-
-\begin{remark}
-    If $(a,b)$ is a $2$-snag as witnessed by $\phi$, then $\{a,b\}$ is closed under $\phi$ and it is a semilattice. 
-\end{remark}
-
-\begin{definition}
-    Let $\mathbf{A}$ be a finite algebra. 
     For $\gamma, \delta \in \Con(\mathbf{A})$ we let 
     \begin{align*}
         \gamma \approx \delta & \iff \gamma \cap \Sn_1(\mathbf{A}) = \delta \cap \Sn_1(\mathbf{A})\\
@@ -661,7 +733,7 @@ The smallest lattice satisfying $\SD(\lor)$ but not $\SD(\land)$ is called $\mat
         \item for every $\mathbf{A} \in \mathsf{V}$ there is a congruence $\theta$ of $\mathbf{L}:=\Con(\mathbf{A})$ such that 
         $\mathbf{L}/\theta$ is meet semi-distributive and for all $a \in L$, $a / \theta$ is modular; 
         \item for every $\mathbf{A} \in \mathsf{V}$, if $\alpha, \beta \in \Con(\mathbf{A})$ are such that $\alpha \sim \beta$, then $\alpha \circ \beta = \beta \circ \alpha$; 
-        \item there is an idempotent term $t$ such that for every $\mathbf{A} \in \mathsf{V}$, if $\Delta_A \sim \theta \in \Con(\mathbf{A})$, then
+        \item there is an idempotent term $t$ such that for every $\mathbf{A} \in \mathsf{V}$, if $\Delta_A \sim \theta$ in $\Con(\mathbf{A})$, then
         \begin{equation*}
             t^\mathbf{A}(a,b,b)=a \quad t^{\mathbf{A}}(a,a,b)=b 
         \end{equation*}
@@ -741,7 +813,7 @@ The smallest lattice satisfying $\SD(\lor)$ but not $\SD(\land)$ is called $\mat
     Let $\mathsf{V}$ be a variety of algebras over $F$, defined by the equations 
     \begin{equation}
         \label{remark_clone}
-        s_1 \equiv t_1,\ldots, s_k \equiv t_k \tag{$\star$}\text{.}
+        s_1 \equiv t_1,\ldots, s_k \equiv t_k \text{.}
     \end{equation} 
     Assume that for each $f \in F_n$ there is $t \in \Clo_n(\mathsf{W})$ such that the interpetation of the $t$'s satisfy the equations \eqref{remark_clone}. 
     Then the assignment $f \mapsto t$ extends to a clone homomorphism $\Clo(\mathsf{V}) \to \Clo(\mathsf{W})$. 
@@ -835,15 +907,15 @@ The smallest lattice satisfying $\SD(\lor)$ but not $\SD(\land)$ is called $\mat
     Then the following are equivalent: 
     \begin{enumerate}
         \item $\mathsf{V} \nleq \mathsf{Set}$; 
-        \item there is an idempotent, finitely presented, linear vareity $\mathsf{W}$ such that $\mathsf{W} \le \mathsf{V}$ but $\mathsf{W} \nleq \mathsf{Set}$; 
-        \item $F$ is nonempty and $\mathsf{V}$ satisfies the equations 
+        \item there is an idempotent, finitely presented, linear variety $\mathsf{W}$ such that $\mathsf{W} \le \mathsf{V}$ but $\mathsf{W} \nleq \mathsf{Set}$; 
+        \item there is a term $f(x_{1}, \ldots, x_{n})$ for $n>0$ such that $\mathsf{V}$ satisfies the equations 
         \begin{align}
             \label{linear_eq}
             f(x_{11}, \ldots, x_{1n}) & \equiv f(y_{11}, \ldots, y_{1n}) \notag\\
-            & \vdotswithin{\equiv} \tag{$\triangle$}  \\ 
+            & \vdotswithin{\equiv} \tag{$\star$}  \\ 
             f(x_{n1}, \ldots, x_{nn}) & \equiv f(y_{n1}, \ldots, y_{nn}) \notag
         \end{align}
-        for some $n >0$ and $x_{ii} \neq y_{ii}$. 
+        with $x_{ii} \neq y_{ii}$. 
     \end{enumerate}
     \begin{proof}
         Firstly, we prove that $(3)$ implies $(2)$. 
@@ -879,7 +951,7 @@ The smallest lattice satisfying $\SD(\lor)$ but not $\SD(\land)$ is called $\mat
     \begin{proof}
         $(2) \implies (1)$: if there is $\mathsf{W}$ idempontent such that $\mathsf{W} \nleq \mathsf{Set}$, 
         then there is $\mathsf{W}'$ idempotent, finitely presented, linear such that $\mathsf{W}' \le \mathsf{W}$, $\mathsf{W}' \nleq \mathsf{Set}$ by Lemma \ref{lemma_linear}. 
-        Assume that $\mathbf{1} \in \typ{\mathsf{V}}$, then by Lemma \ref{lemma_type1}, $\mathsf{W}' \le \mathsf{Set}$.
+        Assume that $\mathbf{1} \in \typ\{\mathsf{V}\}$, then by Lemma \ref{lemma_type1}, $\mathsf{W}' \le \mathsf{Set}$.
         Absurd.  
 
         $(1) \implies (3)$: consider the algebra $\mathbf{F}_{\mathsf{V}}(x,y,z) \in \mathsf{V}$. 
