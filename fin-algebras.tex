@@ -188,7 +188,7 @@ We shall see that, up to polynomial equivalence, there are no other finite minim
 \section{Minimal Algebras Relative to a Congruence}
 \begin{definition}
     Let $\mathbf{A}$ be a finite algebra and let $ \theta \in \Con(\mathbf{A}), \Delta_A \neq \theta$. 
-    We say that $\mathbf{A}$ is $\theta$-\textbf{minimal} if for all $\epsilon \in \Pol_1(\mathbf{A})$ either $\epsilon$ is bijective or $\epsilon$ is constant on the $\theta$-equivalence classes. 
+    We say that $\mathbf{A}$ is $\theta$-\textbf{minimal} if for all $\epsilon \in \Pol_1(\mathbf{A})$ either $\epsilon$ is constant on the $\theta$-equivalence classes or $\epsilon$ is bijective. 
 \end{definition}
 
 \begin{remark}
@@ -527,7 +527,7 @@ The following is an example of a sufficient condition that guarantees that the l
 \end{definition}
 
 \begin{definition}
-    Let $(\delta, \theta)$ be tame in a finite algebra $\mathbf{A}$ and $U \in M_{\mathbf{A}}$.
+    Let $(\delta, \theta)$ be tame in a finite algebra $\mathbf{A}$ and $U \in \M_{\mathbf{A}}(\delta, \theta)$.
     Let $\alpha, \theta \in \Con(\mathbf{A})$. 
     Let $K$ be a class of algebras. 
     We define 
@@ -908,26 +908,75 @@ The smallest lattice satisfying $\SD(\lor)$ but not $\SD(\land)$ is called $\mat
     \begin{enumerate}
         \item $\mathsf{V} \nleq \mathsf{Set}$; 
         \item there is an idempotent, finitely presented, linear variety $\mathsf{W}$ such that $\mathsf{W} \le \mathsf{V}$ but $\mathsf{W} \nleq \mathsf{Set}$; 
-        \item there is a term $f(x_{1}, \ldots, x_{n})$ for $n>0$ such that $\mathsf{V}$ satisfies the equations 
+        \item there is a term $t(x_{1}, \ldots, x_{n})$ for $n>0$ such that $\mathsf{V}$ satisfies the equations 
         \begin{align}
             \label{linear_eq}
-            f(x_{11}, \ldots, x_{1n}) & \equiv f(y_{11}, \ldots, y_{1n}) \notag\\
+            t(x_{11}, \ldots, x_{1n}) & \equiv t(y_{11}, \ldots, y_{1n}) \notag\\
             & \vdotswithin{\equiv} \tag{$\star$}  \\ 
-            f(x_{n1}, \ldots, x_{nn}) & \equiv f(y_{n1}, \ldots, y_{nn}) \notag
+            t(x_{n1}, \ldots, x_{nn}) & \equiv t(y_{n1}, \ldots, y_{nn}) \notag
         \end{align}
         with $x_{ii} \neq y_{ii}$. 
     \end{enumerate}
     \begin{proof}
         Firstly, we prove that $(3)$ implies $(2)$. 
-        Let $\mathsf{W}$ be the variety over $\{f\}$ defined by the equations \eqref{linear_eq}. 
+        Let $\mathsf{W}$ be the variety over $\{t\}$ defined by the equations \eqref{linear_eq}. 
         Then $\mathsf{W}$ is idempotent, finitely presented and linear. 
         Clearly, $\mathsf{W} \le \mathsf{V}$ but $\mathsf{W} \nleq \mathsf{Set}$. 
 
         The implication ``$(2) \implies (1)$" is obvious. 
 
-        If $\mathsf{V} \nleq \mathsf{Set}$
+        Finally, we prove that $(1)$ implies $(3)$.
+        If $\mathsf{V} \nleq \mathsf{Set}$, since $\Clo_n(\mathsf{Set})$ is finite for every $n$,
+        we can assume without loss of generality that $\mathsf{V}$ is finitely presented. 
+        As shown in Example \ref{ex_semilat}, there is $n >0$ and $h \in \Clo_n(\mathsf{V})$ such that, defining
+        \begin{equation}
+            \label{eq_def_l}
+            l(x_1, \ldots, x_{n^2}) \equiv h(h(x_1, \ldots, x_n), \ldots, h(x_{n^2-n+1}, \ldots, x_{n^2}))
+        \end{equation}
+        it allows to rewrite the equations defining $\mathsf{V}$ as linear equations in $\{l\}$.
+        Let $\Sigma$ be this set of equations plus 
+        \begin{equation}
+            \label{eq_trick_l}
+            l(x_1, \ldots, x_1, \ldots, x_n, \ldots, x_n) \equiv l(x_1, \ldots, x_n, \ldots, x_1, \ldots, x_n)
+        \end{equation} 
+        Let $\Sigma'$ be $\Sigma \cup \{h(x,\ldots,x) \equiv x\}$ plus Equation \eqref{eq_def_l}.
+        We claim the the term $l$ and the equations of $\Sigma$ give the thesis. 
+        If that were not true, there is $m < n^2$, $m=i \cdot n + (j+1)$, such that in every equation of $\Sigma$, the same variable appears at the $m$-th place on both side. 
+        Since Equation \ref{eq_trick_l} belongs to $\Sigma$, $i=j$. 
+        If we define $h(x_1,\ldots,x_n) :=x_i$, $l(x_1, \ldots, x_{n^2}):=x_m$, then $\mathsf{Set}$ satisfies $\Sigma'$. 
+        But $\mathsf{V} \nleq \mathsf{Set}$ and if $\mathsf{W}$ satisfies $\Sigma'$, $\mathsf{V} \le \mathsf{W}$. 
+        Contradiction. 
     \end{proof}
 \end{lemma}
+
+\begin{example}
+    \label{ex_semilat}
+    Consider the variety of $\lor$-semilattices. 
+    It is defined by the equations 
+    \begin{align*}
+        f(x,x) & \equiv x \\
+        f(x,y) & \equiv f(y,x) \\
+        f(x, f(y,z)) & \equiv f(f(x,y),z) \\
+    \end{align*}
+    We expand the set of function symbols $\{f\}$ to $\{f,p_1, p_2, p_3 f_1, f_2\}$ and the set of equations to 
+    \begin{align*}
+        f(x,x) & \equiv x \\
+        f(x,y) & \equiv f(y,x) \\
+        f_1(x,y,z) & \equiv f(p_2(x,y,z),p_3(x,y,z)) \\
+        f_2(x,y,z) & \equiv f(p_1(x,y,z), p_2(x,y,z)) \\
+    \end{align*}
+    Let $k(x_1, \ldots, x_6):= f(f_1(x_1, x_2, x_3), f_1(x_4,x_5,x_6))$ and 
+    \begin{equation*}
+        h(x_1, \ldots, x_{18}):=f_2(k(x_1, \ldots, x_6),k(x_7, \ldots, x_{12}),k(x_{13}, \ldots, x_{18})) \text{.}
+    \end{equation*}
+    It is easy to see that each element of $\{f,p_1, p_2, p_3 f_1, f_2\}$ can be obtained by $h$ identifying variables ($f$ is idempontent!):
+    \begin{align*}
+        h(x_1 \ldots, x_1, x_2, \ldots, x_2 , x_3 \ldots, x_3) & \equiv f_2(x_1,x_2,x_3) \\
+        h(x_1, \ldots, x_6, \ldots, x_1, \ldots, x_6) & \equiv k(x_1, \ldots, x_6) \\
+        k(x_1, x_2, x_3, x_1, x_2, x_3) & \equiv f_1(x_1, x_2, x_3) \\
+        k(x_1, x_1, x_1, x_2, x_2, x_2) & \equiv f(x_1, x_2) \text{.}
+    \end{align*}
+\end{example}
 
 \begin{theorem}
     \label{omitting_typ1}
@@ -989,7 +1038,37 @@ The smallest lattice satisfying $\SD(\lor)$ but not $\SD(\land)$ is called $\mat
         Then $f(\theta(y,z)_m \circ \theta(x,y)_m) \subseteq \gamma_m \circ \beta_m$ and therefore $(a,c) \in \gamma_m \circ \beta_m$. 
 
         $(3) \implies (2)$: assume that there is $m>0$ such that if $\mathbf{A}=\mathbf{F}_{\mathsf{V}}(x,y,z)$, $\alpha=\theta(x,z), \beta=\theta(x,y), \gamma=\theta(y,z)$, 
-        and $(x,z) \in \alpha $
+        and $(x,z) \in \alpha \land (\beta \circ \gamma)$, then $(x,z) \in \gamma_m \circ \beta_m$. 
+        \begin{claim}
+            That $(x,z) \in \gamma_m \circ \beta_m$ implies: there are terms 
+            \begin{equation*}
+                t_1(x,y,z), \ldots, t_k(x,y,z) \in \mathbf{F}_{\mathsf{V}}(x,y,z)
+            \end{equation*} 
+            such that $\mathsf{V}$ satisfies a finite number of equations of the kind
+            $t_i \equiv t_j$ for some $i,j \le k$. 
+            \begin{proof}
+                We prove the claim when $m=1$. 
+                Assume that $x,z \in \mathbf{F}_{\mathsf{V}}(x,y,z)$ are such that $(x,z) \in (\gamma \lor (\alpha \land \beta)) \circ (\beta \lor (\alpha \land \gamma))$. 
+                Then there are terms 
+                \begin{equation*}
+                    d_1(x,y,z), \ldots, d_n(x,y,z), p(x,y,z), e_1(x,y,z), \ldots, e_n(x,y,z) \in \mathbf{F}_{\mathsf{V}}(x,y,z)
+                \end{equation*}
+                such that $\mathsf{V}$ satisfies 
+                \begin{align*}
+                    x & \equiv d_1(x,y,z) \\
+                    d_i(x,y,y) & \equiv d_{i+1}(x,y,y) & & & \text{ for $i$ odd} \\
+                    d_i(x,y,x) & \equiv d_{i+1}(x,y,x)  & d_i(x,x,y) & \equiv d_{i+1}(x,x,y) & \text{ for $i$ even} \\
+                    d_n(x,y,y) & \equiv p(x,y,y) \\
+                    p(x,x,y) & \equiv e_1(x,x,y)\\
+                    e_i(x,y,x) & \equiv d_{i+1}(x,y,x)  & e_i(x,y,y) & \equiv e_{i+1}(x,y,y) & \text{ for $i$ odd} \\
+                    &  & e_i(x,x,y) & \equiv e_{i+1}(x,x,y) & \text{ for $i$ even} \\
+                    & & e_n(x,y,z) & \equiv z &  \qedhere\\
+                \end{align*}
+            \end{proof}
+        \end{claim}
+        Hence there is a idempontent, finitely presented, linear variety $\mathsf{E}$ such that $\mathsf{E} \le \mathsf{V}$ and whenever $\mathsf{E} \le \mathsf{W}$, $\mathsf{W}$ satisfies a set of equations similar to those above.
+        However, $\mathsf{Set}$ does not satisfy equations of this kind; 
+        hence there is an idempontent variety $\mathsf{E}$ such that $\mathsf{E} \le \mathsf{V}$ with $\mathsf{E} \nleq \mathsf{Set}$.
     \end{proof}
 \end{theorem}
 
